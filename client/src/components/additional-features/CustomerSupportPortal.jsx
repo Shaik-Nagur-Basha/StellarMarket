@@ -1,10 +1,10 @@
 // components/CustomerSupportPortal.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function CustomerSupportPortal() {
+export default function CustomerSupportPortal() {
   const [tickets, setTickets] = useState([]);
-  const [subject, setSubject] = useState('');
-  const [description, setDescription] = useState('');
+  const [subject, setSubject] = useState("");
+  const [description, setDescription] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,16 +12,18 @@ function CustomerSupportPortal() {
       id: Date.now(),
       subject,
       description,
-      status: 'Open',
+      status: "Open",
     };
     setTickets([newTicket, ...tickets]);
-    setSubject('');
-    setDescription('');
+    setSubject("");
+    setDescription("");
   };
 
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10 px-4">
-      <h1 className="text-3xl font-bold text-center mb-6">Customer Support Portal</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">
+        Customer Support Portal
+      </h1>
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-6">
         <form onSubmit={handleSubmit} className="mb-6">
           <h2 className="text-2xl font-bold mb-4">Submit a Ticket</h2>
@@ -71,4 +73,4 @@ function CustomerSupportPortal() {
   );
 }
 
-export default CustomerSupportPortal;
+//CustomerSupportPortal;

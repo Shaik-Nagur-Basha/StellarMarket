@@ -1,35 +1,39 @@
 // components/AdvancedNLPChatbot.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
 function simulateNLPResponse(message) {
   const lower = message.toLowerCase();
-  if (lower.includes('order')) {
+  if (lower.includes("order")) {
     return "It looks like you have a question about your order. Could you please provide your order number?";
-  } else if (lower.includes('refund')) {
+  } else if (lower.includes("refund")) {
     return "I'm sorry to hear you want a refund. May I know more details about the issue?";
-  } else if (lower.includes('shipping')) {
+  } else if (lower.includes("shipping")) {
     return "Our standard shipping takes 3-5 business days. Would you like more information?";
   } else {
     return "Thank you for your message. How else can I assist you today?";
   }
 }
 
-function AdvancedNLPChatbot() {
+export default function AdvancedNLPChatbot() {
   const [chatLog, setChatLog] = useState([
-    { sender: 'bot', message: 'Hello! I am your advanced support chatbot. How can I assist you today?' }
+    {
+      sender: "bot",
+      message:
+        "Hello! I am your advanced support chatbot. How can I assist you today?",
+    },
   ]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
   const handleSend = (e) => {
     e.preventDefault();
     if (!input.trim()) return;
-    const userMessage = { sender: 'user', message: input };
+    const userMessage = { sender: "user", message: input };
     setChatLog([...chatLog, userMessage]);
-    setInput('');
+    setInput("");
     setTimeout(() => {
       const response = simulateNLPResponse(userMessage.message);
-      const botMessage = { sender: 'bot', message: response };
-      setChatLog(prev => [...prev, botMessage]);
+      const botMessage = { sender: "bot", message: response };
+      setChatLog((prev) => [...prev, botMessage]);
     }, 1500);
   };
 
@@ -39,8 +43,19 @@ function AdvancedNLPChatbot() {
       <div className="w-full max-w-md bg-white rounded-lg shadow-xl flex flex-col">
         <div className="p-4 flex-1 overflow-y-auto">
           {chatLog.map((entry, index) => (
-            <div key={index} className={`mb-2 ${entry.sender === 'user' ? 'text-right' : 'text-left'}`}>
-              <span className={`inline-block p-2 rounded ${entry.sender === 'user' ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-800'}`}>
+            <div
+              key={index}
+              className={`mb-2 ${
+                entry.sender === "user" ? "text-right" : "text-left"
+              }`}
+            >
+              <span
+                className={`inline-block p-2 rounded ${
+                  entry.sender === "user"
+                    ? "bg-blue-100 text-blue-800"
+                    : "bg-gray-200 text-gray-800"
+                }`}
+              >
                 {entry.message}
               </span>
             </div>
@@ -60,4 +75,4 @@ function AdvancedNLPChatbot() {
   );
 }
 
-export default AdvancedNLPChatbot;
+//AdvancedNLPChatbot;

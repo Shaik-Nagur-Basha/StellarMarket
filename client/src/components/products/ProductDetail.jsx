@@ -1,26 +1,28 @@
 // components/ProductDetail.js
-import React from 'react';
-import { useParams } from 'react-router-dom';
+import React from "react";
+import { useParams } from "react-router-dom";
 
 const productData = {
   1: {
     id: 1,
     name: "Product 1",
     price: "$49.99",
-    image: "/product1.jpg",
-    description: "This is an amazing product with incredible features and premium quality.",
+    image: "https://picsum.photos/seed/product1/800/600",
+    description:
+      "This is an amazing product with incredible features and premium quality.",
   },
   2: {
     id: 2,
     name: "Product 2",
     price: "$39.99",
-    image: "/product2.jpg",
-    description: "Experience the best quality with our product. It comes with outstanding performance.",
+    image: "https://picsum.photos/seed/product2/800/600",
+    description:
+      "Experience the best quality with our product. It comes with outstanding performance.",
   },
   // Add additional product details as needed...
 };
 
-function ProductDetail() {
+export default function ProductDetail() {
   const { id } = useParams();
   const product = productData[id];
 
@@ -60,4 +62,4 @@ function ProductDetail() {
   );
 }
 
-export default ProductDetail;
+//ProductDetail;

@@ -1,12 +1,12 @@
 // components/LoyaltyProgram.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-function LoyaltyProgram() {
+export default function LoyaltyProgram() {
   const [points, setPoints] = useState(0);
   const [rewards, setRewards] = useState([
-    { id: 1, name: '10% Discount Coupon', requiredPoints: 100 },
-    { id: 2, name: 'Free Shipping', requiredPoints: 200 },
-    { id: 3, name: 'Exclusive Product Access', requiredPoints: 300 },
+    { id: 1, name: "10% Discount Coupon", requiredPoints: 100 },
+    { id: 2, name: "Free Shipping", requiredPoints: 200 },
+    { id: 3, name: "Exclusive Product Access", requiredPoints: 300 },
   ]);
 
   // Simulate fetching user's loyalty points (dummy value)
@@ -38,7 +38,9 @@ function LoyaltyProgram() {
                 className="mt-2 w-full bg-blue-500 hover:bg-blue-700 text-white py-2 px-4 rounded transition duration-300"
                 disabled={points < reward.requiredPoints}
               >
-                {points >= reward.requiredPoints ? 'Redeem Reward' : 'Not Enough Points'}
+                {points >= reward.requiredPoints
+                  ? "Redeem Reward"
+                  : "Not Enough Points"}
               </button>
             </li>
           ))}
@@ -47,5 +49,3 @@ function LoyaltyProgram() {
     </div>
   );
 }
-
-export default LoyaltyProgram;

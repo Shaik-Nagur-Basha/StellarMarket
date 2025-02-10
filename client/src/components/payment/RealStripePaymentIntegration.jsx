@@ -1,17 +1,22 @@
 // components/RealStripePaymentIntegration.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-function RealStripePaymentIntegration() {
-  const [paymentStatus, setPaymentStatus] = useState('');
+export default function RealStripePaymentIntegration() {
+  const [paymentStatus, setPaymentStatus] = useState("");
   const [paymentHistory, setPaymentHistory] = useState([]);
 
   const processPayment = () => {
-    setPaymentStatus('Processing payment...');
+    setPaymentStatus("Processing payment...");
     // Simulate a call to Stripe API (dummy endpoint)
     setTimeout(() => {
-      setPaymentStatus('Payment successful!');
-      setPaymentHistory(prev => [
-        { id: Date.now(), amount: '$99.99', date: new Date().toLocaleDateString(), status: 'Completed' },
+      setPaymentStatus("Payment successful!");
+      setPaymentHistory((prev) => [
+        {
+          id: Date.now(),
+          amount: "$99.99",
+          date: new Date().toLocaleDateString(),
+          status: "Completed",
+        },
         ...prev,
       ]);
     }, 2000);
@@ -21,8 +26,8 @@ function RealStripePaymentIntegration() {
     // Simulate fetching existing payment history from backend
     setTimeout(() => {
       setPaymentHistory([
-        { id: 1, amount: '$49.99', date: '01/15/2025', status: 'Completed' },
-        { id: 2, amount: '$79.99', date: '02/10/2025', status: 'Completed' },
+        { id: 1, amount: "$49.99", date: "01/15/2025", status: "Completed" },
+        { id: 2, amount: "$79.99", date: "02/10/2025", status: "Completed" },
       ]);
     }, 1000);
   }, []);
@@ -30,7 +35,9 @@ function RealStripePaymentIntegration() {
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10 px-4">
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center">Stripe Payment Integration</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          Stripe Payment Integration
+        </h1>
         <button
           onClick={processPayment}
           className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 mb-4"
@@ -42,7 +49,9 @@ function RealStripePaymentIntegration() {
         )}
         <h2 className="text-2xl font-bold mb-4">Payment History</h2>
         {paymentHistory.length === 0 ? (
-          <p className="text-center text-gray-600">Loading payment history...</p>
+          <p className="text-center text-gray-600">
+            Loading payment history...
+          </p>
         ) : (
           <table className="min-w-full table-auto">
             <thead>
@@ -54,7 +63,7 @@ function RealStripePaymentIntegration() {
               </tr>
             </thead>
             <tbody>
-              {paymentHistory.map(payment => (
+              {paymentHistory.map((payment) => (
                 <tr key={payment.id}>
                   <td className="px-4 py-2 border">{payment.id}</td>
                   <td className="px-4 py-2 border">{payment.amount}</td>
@@ -70,4 +79,4 @@ function RealStripePaymentIntegration() {
   );
 }
 
-export default RealStripePaymentIntegration;
+//RealStripePaymentIntegration;

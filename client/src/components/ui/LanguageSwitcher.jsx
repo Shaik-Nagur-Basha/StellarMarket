@@ -2,7 +2,7 @@
 import React, { useContext } from "react";
 import { LanguageContext } from "../../contexts/LanguageContext";
 
-function LanguageSwitcher() {
+export default function LanguageSwitcher() {
   const { language, switchLanguage } = useContext(LanguageContext);
 
   return (
@@ -40,5 +40,3 @@ function LanguageSwitcher() {
     </div>
   );
 }
-
-export default LanguageSwitcher;

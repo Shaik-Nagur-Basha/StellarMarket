@@ -4,22 +4,22 @@ import Navbar from "./components/common/Navbar";
 import Hero from "./components/layout/Hero";
 import Products from "./components/products/Products";
 import ParallaxBanner from "./components/layout/ParallaxBanner";
-import AdvancedRecommendations from "./components/AdvancedRecommendations";
-import PaymentGateway from "./components/PaymentGateway";
-import ShippingCalculator from "./components/ShippingCalculator";
-import Testimonials from "./components/Testimonials";
-import FAQ from "./components/FAQ";
-import LiveDataFeed from "./components/LiveDataFeed";
-import VideoGallery from "./components/VideoGallery";
+import AdvancedRecommendations from "./components/additional-features/AdvancedRecommendations";
+import ShippingCalculator from "./components/shipping/ShippingCalculator";
+import Testimonials from "./components/ui/Testimonials";
+import FAQ from "./components/ui/FAQ";
+import LiveDataFeed from "./components/analytics/LiveDataFeed";
+import VideoGallery from "./components/media/VideoGallery";
 import SocialMediaFeed from "./components/media/SocialMediaFeed";
-import AugmentedRealityViewer from "./components/AugmentedRealityViewer";
+import AugmentedRealityViewer from "./components/additional-features/AugmentedRealityViewer";
 import Newsletter from "./components/layout/Newsletter";
-import Footer from "./components/Footer";
+import Footer from "./components/common/Footer";
 import ScrollToTop from "./components/common/ScrollToTop";
-import ChatWidget from "./components/ChatWidget";
+import ChatWidget from "./components/ui/ChatWidget";
 import NotificationWidget from "./components/ui/NotificationWidget";
+import PaymentGateway from "./components/payment/PaymentGateway";
 
-function App() {
+export default function App() {
   return (
     <div className="min-h-screen flex flex-col">
       <Navbar />
@@ -27,7 +27,7 @@ function App() {
       <Hero />
       <Products />
       <ParallaxBanner
-        imageUrl="/parallax.jpg"
+        imageUrl="https://miro.medium.com/v2/resize:fit:1400/0*-pOySD-Yf6yiyInP.jpg"
         title="Experience the Future"
         subtitle="Innovative designs meet modern technology."
       />
@@ -47,5 +47,3 @@ function App() {
     </div>
   );
 }
-
-export default App;

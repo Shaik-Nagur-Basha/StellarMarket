@@ -1,8 +1,8 @@
 // components/Newsletter.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function Newsletter() {
-  const [email, setEmail] = useState('');
+export default function Newsletter() {
+  const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
   const handleSubscribe = (e) => {
@@ -18,7 +18,10 @@ function Newsletter() {
         {submitted ? (
           <p className="text-xl">Thank you for subscribing!</p>
         ) : (
-          <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row justify-center items-center">
+          <form
+            onSubmit={handleSubscribe}
+            className="flex flex-col sm:flex-row justify-center items-center"
+          >
             <input
               type="email"
               value={email}
@@ -27,7 +30,10 @@ function Newsletter() {
               className="p-3 rounded-md mb-4 sm:mb-0 sm:mr-4 text-gray-800"
               required
             />
-            <button type="submit" className="bg-white text-blue-500 font-bold p-3 rounded-md hover:bg-gray-200 transition duration-300">
+            <button
+              type="submit"
+              className="bg-white text-blue-500 font-bold p-3 rounded-md hover:bg-gray-200 transition duration-300"
+            >
               Subscribe
             </button>
           </form>
@@ -37,4 +43,4 @@ function Newsletter() {
   );
 }
 
-export default Newsletter;
+//Newsletter;

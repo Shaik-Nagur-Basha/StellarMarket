@@ -8,25 +8,25 @@ const dummyProducts = [
     name: "Product 1",
     price: "$49.99",
     features: ["Feature A", "Feature B", "Feature C"],
-    image: "/product1.jpg",
+    image: "https://picsum.photos/seed/product1/400/400",
   },
   {
     id: 2,
     name: "Product 2",
     price: "$39.99",
     features: ["Feature A", "Feature D", "Feature E"],
-    image: "/product2.jpg",
+    image: "https://picsum.photos/seed/product2/400/400",
   },
   {
     id: 3,
     name: "Product 3",
     price: "$59.99",
     features: ["Feature B", "Feature C", "Feature F"],
-    image: "/product3.jpg",
+    image: "https://picsum.photos/seed/product3/400/400",
   },
 ];
 
-function ProductComparison() {
+export default function ProductComparison() {
   const [selectedProducts, setSelectedProducts] = useState([]);
 
   const toggleProduct = (product) => {
@@ -93,5 +93,3 @@ function ProductComparison() {
     </div>
   );
 }
-
-export default ProductComparison;

@@ -4,15 +4,16 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import LanguageSwitcher from "../ui/LanguageSwitcher";
 import DarkModeToggle from "../ui/DarkModeToggle";
+import logo from "../../assets/generated-image.png";
 
-function Navbar() {
+export default function Navbar() {
   const { user, logout } = useContext(AuthContext);
   return (
     <nav className="bg-white dark:bg-gray-800 shadow-lg fixed w-full top-0 z-50">
       <div className="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
         <div className="flex items-center">
           <Link to="/">
-            <img className="h-8 w-8" src="logo.png" alt="Logo" />
+            <img className="h-8 w-8" src={logo} alt="Logo" />
           </Link>
           <div className="ml-4 flex space-x-2">
             <LanguageSwitcher />
@@ -283,4 +284,4 @@ function Navbar() {
   );
 }
 
-export default Navbar;
+//Navbar;

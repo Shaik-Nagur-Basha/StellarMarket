@@ -1,9 +1,9 @@
 // components/VirtualTryOn.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function VirtualTryOn() {
-  const [selectedColor, setSelectedColor] = useState('red');
-  const colors = ['red', 'blue', 'green', 'black'];
+export default function VirtualTryOn() {
+  const [selectedColor, setSelectedColor] = useState("red");
+  const colors = ["red", "blue", "green", "black"];
 
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10 px-4 flex flex-col items-center">
@@ -14,11 +14,13 @@ function VirtualTryOn() {
           <span className="text-2xl font-bold">Try‑On: {selectedColor}</span>
         </div>
         <div className="flex space-x-4">
-          {colors.map(color => (
+          {colors.map((color) => (
             <button
               key={color}
               onClick={() => setSelectedColor(color)}
-              className={`w-10 h-10 rounded-full border-2 ${selectedColor === color ? 'border-blue-500' : 'border-gray-300'}`}
+              className={`w-10 h-10 rounded-full border-2 ${
+                selectedColor === color ? "border-blue-500" : "border-gray-300"
+              }`}
               style={{ backgroundColor: color }}
             ></button>
           ))}
@@ -28,4 +30,4 @@ function VirtualTryOn() {
   );
 }
 
-export default VirtualTryOn;
+//VirtualTryOn;

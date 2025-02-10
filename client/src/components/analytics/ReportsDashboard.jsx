@@ -1,35 +1,52 @@
 // components/ReportsDashboard.js
-import React, { useEffect, useRef } from 'react';
-import { Chart, LineController, LineElement, PointElement, LinearScale, Title, CategoryScale } from 'chart.js';
+import React, { useEffect, useRef } from "react";
+import {
+  Chart,
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  Title,
+  CategoryScale,
+} from "chart.js";
 
-Chart.register(LineController, LineElement, PointElement, LinearScale, Title, CategoryScale);
+Chart.register(
+  LineController,
+  LineElement,
+  PointElement,
+  LinearScale,
+  Title,
+  CategoryScale
+);
 
-function ReportsDashboard() {
+export default function ReportsDashboard() {
   const chartRef = useRef(null);
 
   useEffect(() => {
-    const ctx = chartRef.current.getContext('2d');
+    const ctx = chartRef.current.getContext("2d");
     const myChart = new Chart(ctx, {
-      type: 'line',
+      type: "line",
       data: {
-        labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
-        datasets: [{
-          label: 'Sales',
-          data: [65, 59, 80, 81, 56, 55],
-          fill: false,
-          borderColor: 'rgba(75,192,192,1)',
-          tension: 0.1
-        }]
+        labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun"],
+        datasets: [
+          {
+            label: "Sales",
+            data: [65, 59, 80, 81, 56, 55],
+            fill: false,
+            borderColor: "rgba(75,192,192,1)",
+            tension: 0.1,
+          },
+        ],
       },
       options: {
         responsive: true,
         plugins: {
           title: {
             display: true,
-            text: 'Monthly Sales'
-          }
-        }
-      }
+            text: "Monthly Sales",
+          },
+        },
+      },
     });
 
     return () => {
@@ -47,4 +64,4 @@ function ReportsDashboard() {
   );
 }
 
-export default ReportsDashboard;
+//ReportsDashboard;

@@ -1,9 +1,9 @@
 // components/AnalyticsDashboard.js
 import React from "react";
-import PerformanceMonitor from "../PerformanceMonitor";
-import UserBehaviorTracker from "../UserBehaviorTracker";
+import PerformanceMonitor from "./PerformanceMonitor";
+import UserBehaviorTracker from "./UserBehaviorTracker";
 
-function AnalyticsDashboard() {
+export default function AnalyticsDashboard() {
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10">
       <div className="max-w-4xl mx-auto px-4">
@@ -22,4 +22,4 @@ function AnalyticsDashboard() {
   );
 }
 
-export default AnalyticsDashboard;
+//AnalyticsDashboard;

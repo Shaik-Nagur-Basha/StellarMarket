@@ -1,7 +1,7 @@
 // components/ProductCard.js
-import React from 'react';
+import React from "react";
 
-function ProductCard({ product }) {
+export default function ProductCard({ product }) {
   return (
     <div className="bg-white rounded-lg shadow-lg hover:shadow-2xl transition-shadow duration-300 overflow-hidden">
       <div className="relative">
@@ -27,4 +27,4 @@ function ProductCard({ product }) {
   );
 }
 
-export default ProductCard;
+//ProductCard;

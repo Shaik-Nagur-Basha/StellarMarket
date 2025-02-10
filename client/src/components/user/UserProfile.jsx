@@ -2,7 +2,7 @@
 import React, { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 
-function UserProfile() {
+export default function UserProfile() {
   const { user } = useContext(AuthContext);
   const [profile, setProfile] = useState({
     username: user?.username || "",
@@ -79,5 +79,3 @@ function UserProfile() {
     </div>
   );
 }
-
-export default UserProfile;

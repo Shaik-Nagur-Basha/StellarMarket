@@ -1,11 +1,11 @@
 // components/AdvancedAnalyticsDashboard.js
 import React from "react";
-import PerformanceMonitor from "../PerformanceMonitor";
-import ConversionRateChart from "../ConversionRateChart";
-import UserSessionsChart from "../UserSessionsChart";
-import UserBehaviorTracker from "../UserBehaviorTracker";
+import PerformanceMonitor from "./PerformanceMonitor";
+import ConversionRateChart from "./ConversionRateChart";
+import UserSessionsChart from "./UserSessionsChart";
+import UserBehaviorTracker from "./UserBehaviorTracker";
 
-function AdvancedAnalyticsDashboard() {
+export default function AdvancedAnalyticsDashboard() {
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10">
       <div className="max-w-6xl mx-auto px-4">
@@ -26,4 +26,4 @@ function AdvancedAnalyticsDashboard() {
   );
 }
 
-export default AdvancedAnalyticsDashboard;
+//AdvancedAnalyticsDashboard;

@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from "react";
 import ProductCard from "../common/ProductCard";
 
-function PersonalizedRecommendationsEngine() {
+export default function PersonalizedRecommendationsEngine() {
   const [recommendations, setRecommendations] = useState([]);
 
   useEffect(() => {
@@ -13,19 +13,19 @@ function PersonalizedRecommendationsEngine() {
           id: 301,
           name: "Personalized Product 1",
           price: "$69.99",
-          image: "/personalized1.jpg",
+          image: "https://picsum.photos/seed/personalized1/400/400",
         },
         {
           id: 302,
           name: "Personalized Product 2",
           price: "$89.99",
-          image: "/personalized2.jpg",
+          image: "https://picsum.photos/seed/personalized2/400/400",
         },
         {
           id: 303,
           name: "Personalized Product 3",
           price: "$79.99",
-          image: "/personalized3.jpg",
+          image: "https://picsum.photos/seed/personalized3/400/400",
         },
       ]);
     }, 1000);
@@ -47,4 +47,4 @@ function PersonalizedRecommendationsEngine() {
   );
 }
 
-export default PersonalizedRecommendationsEngine;
+//PersonalizedRecommendationsEngine;

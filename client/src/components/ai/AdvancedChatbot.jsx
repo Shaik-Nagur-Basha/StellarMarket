@@ -1,23 +1,26 @@
 // components/AdvancedChatbot.js
-import React, { useState } from 'react';
+import React, { useState } from "react";
 
-function AdvancedChatbot() {
+export default function AdvancedChatbot() {
   const [chatLog, setChatLog] = useState([
-    { sender: 'bot', message: 'Hello! How can I help you today?' }
+    { sender: "bot", message: "Hello! How can I help you today?" },
   ]);
-  const [input, setInput] = useState('');
+  const [input, setInput] = useState("");
 
   const handleSend = (e) => {
     e.preventDefault();
-    if (input.trim() === '') return;
-    const userMessage = { sender: 'user', message: input };
+    if (input.trim() === "") return;
+    const userMessage = { sender: "user", message: input };
     setChatLog([...chatLog, userMessage]);
-    setInput('');
+    setInput("");
 
     // Simulate bot response after a short delay
     setTimeout(() => {
-      const botMessage = { sender: 'bot', message: "I'm here to assist you with any questions you have!" };
-      setChatLog(prev => [...prev, botMessage]);
+      const botMessage = {
+        sender: "bot",
+        message: "I'm here to assist you with any questions you have!",
+      };
+      setChatLog((prev) => [...prev, botMessage]);
     }, 1000);
   };
 
@@ -27,8 +30,19 @@ function AdvancedChatbot() {
       <div className="w-full max-w-md bg-white rounded-lg shadow-xl flex flex-col">
         <div className="p-4 flex-1 overflow-y-auto">
           {chatLog.map((entry, index) => (
-            <div key={index} className={`mb-2 ${entry.sender === 'user' ? 'text-right' : 'text-left'}`}>
-              <span className={`inline-block p-2 rounded ${entry.sender === 'user' ? 'bg-blue-100 text-blue-800' : 'bg-gray-200 text-gray-800'}`}>
+            <div
+              key={index}
+              className={`mb-2 ${
+                entry.sender === "user" ? "text-right" : "text-left"
+              }`}
+            >
+              <span
+                className={`inline-block p-2 rounded ${
+                  entry.sender === "user"
+                    ? "bg-blue-100 text-blue-800"
+                    : "bg-gray-200 text-gray-800"
+                }`}
+              >
                 {entry.message}
               </span>
             </div>
@@ -48,4 +62,4 @@ function AdvancedChatbot() {
   );
 }
 
-export default AdvancedChatbot;
+//AdvancedChatbot;

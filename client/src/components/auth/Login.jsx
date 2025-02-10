@@ -3,7 +3,7 @@ import React, { useContext, useState } from "react";
 import { AuthContext } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-function Login() {
+export default function Login() {
   const { login } = useContext(AuthContext);
   const navigate = useNavigate();
   const [username, setUsername] = useState("");
@@ -62,4 +62,4 @@ function Login() {
   );
 }
 
-export default Login;
+//Login;

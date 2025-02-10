@@ -1,11 +1,11 @@
 // components/EnhancedAnalyticsDashboard.js
 import React from "react";
-import PerformanceMonitor from "../PerformanceMonitor";
-import PredictiveAnalytics from "../PredictiveAnalytics";
-import SentimentAnalysis from "../SentimentAnalysis";
-import UserBehaviorTracker from "../UserBehaviorTracker";
+import PerformanceMonitor from "./PerformanceMonitor";
+import PredictiveAnalytics from "./PredictiveAnalytics";
+import SentimentAnalysis from "./SentimentAnalysis";
+import UserBehaviorTracker from "./UserBehaviorTracker";
 
-function EnhancedAnalyticsDashboard() {
+export default function EnhancedAnalyticsDashboard() {
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10">
       <div className="max-w-6xl mx-auto px-4">
@@ -28,4 +28,4 @@ function EnhancedAnalyticsDashboard() {
   );
 }
 
-export default EnhancedAnalyticsDashboard;
+//EnhancedAnalyticsDashboard;

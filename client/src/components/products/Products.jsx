@@ -4,14 +4,34 @@ import ProductCard from "../common/ProductCard";
 import Filters from "../common/Filters";
 
 const initialProducts = [
-  { id: 1, name: "Product 1", price: 49.99, image: "/product1.jpg" },
-  { id: 2, name: "Product 2", price: 39.99, image: "/product2.jpg" },
-  { id: 3, name: "Product 3", price: 59.99, image: "/product3.jpg" },
-  { id: 4, name: "Product 4", price: 29.99, image: "/product4.jpg" },
+  {
+    id: 1,
+    name: "Product 1",
+    price: 49.99,
+    image: "https://picsum.photos/seed/product1/400/400",
+  },
+  {
+    id: 2,
+    name: "Product 2",
+    price: 39.99,
+    image: "https://picsum.photos/seed/product2/400/400",
+  },
+  {
+    id: 3,
+    name: "Product 3",
+    price: 59.99,
+    image: "https://picsum.photos/seed/product3/400/400",
+  },
+  {
+    id: 4,
+    name: "Product 4",
+    price: 29.99,
+    image: "https://picsum.photos/seed/product4/400/400",
+  },
   // Extend with more products as needed...
 ];
 
-function Products() {
+export default function Products() {
   const [products] = useState(initialProducts);
   const [filteredProducts, setFilteredProducts] = useState(initialProducts);
 
@@ -51,4 +71,4 @@ function Products() {
   );
 }
 
-export default Products;
+//Products;

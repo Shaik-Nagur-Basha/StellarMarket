@@ -1,24 +1,24 @@
 // components/AdvancedPaymentGatewayIntegration.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-function AdvancedPaymentGatewayIntegration() {
-  const [paymentStatus, setPaymentStatus] = useState('');
+export default function AdvancedPaymentGatewayIntegration() {
+  const [paymentStatus, setPaymentStatus] = useState("");
   const [paymentHistory, setPaymentHistory] = useState([]);
 
   const processPayment = () => {
-    setPaymentStatus('Processing payment...');
+    setPaymentStatus("Processing payment...");
     // Simulate API call delay
     setTimeout(() => {
-      setPaymentStatus('Payment successful!');
+      setPaymentStatus("Payment successful!");
       // Simulate adding a new payment to history
-      setPaymentHistory(prevHistory => [
+      setPaymentHistory((prevHistory) => [
         {
           id: Date.now(),
-          amount: '$99.99',
+          amount: "$99.99",
           date: new Date().toLocaleDateString(),
-          status: 'Completed'
+          status: "Completed",
         },
-        ...prevHistory
+        ...prevHistory,
       ]);
     }, 2000);
   };
@@ -27,8 +27,8 @@ function AdvancedPaymentGatewayIntegration() {
   useEffect(() => {
     setTimeout(() => {
       setPaymentHistory([
-        { id: 1, amount: '$49.99', date: '01/15/2025', status: 'Completed' },
-        { id: 2, amount: '$79.99', date: '02/10/2025', status: 'Completed' }
+        { id: 1, amount: "$49.99", date: "01/15/2025", status: "Completed" },
+        { id: 2, amount: "$79.99", date: "02/10/2025", status: "Completed" },
       ]);
     }, 1000);
   }, []);
@@ -36,7 +36,9 @@ function AdvancedPaymentGatewayIntegration() {
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10 px-4">
       <div className="max-w-2xl mx-auto bg-white rounded-lg shadow-xl p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center">Advanced Payment Integration</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          Advanced Payment Integration
+        </h1>
         <button
           onClick={processPayment}
           className="w-full bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded transition duration-300 mb-4"
@@ -48,7 +50,9 @@ function AdvancedPaymentGatewayIntegration() {
         )}
         <h2 className="text-2xl font-bold mb-4">Payment History</h2>
         {paymentHistory.length === 0 ? (
-          <p className="text-center text-gray-600">Loading payment history...</p>
+          <p className="text-center text-gray-600">
+            Loading payment history...
+          </p>
         ) : (
           <table className="min-w-full table-auto">
             <thead>
@@ -60,7 +64,7 @@ function AdvancedPaymentGatewayIntegration() {
               </tr>
             </thead>
             <tbody>
-              {paymentHistory.map(payment => (
+              {paymentHistory.map((payment) => (
                 <tr key={payment.id}>
                   <td className="px-4 py-2 border">{payment.id}</td>
                   <td className="px-4 py-2 border">{payment.amount}</td>
@@ -76,4 +80,4 @@ function AdvancedPaymentGatewayIntegration() {
   );
 }
 
-export default AdvancedPaymentGatewayIntegration;
+//AdvancedPaymentGatewayIntegration;

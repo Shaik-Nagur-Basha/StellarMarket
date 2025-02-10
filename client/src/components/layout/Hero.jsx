@@ -1,11 +1,13 @@
 // components/Hero.js
-import React from 'react';
+import React from "react";
 
-function Hero() {
+export default function Hero() {
   return (
     <section
       className="h-screen flex items-center justify-center bg-cover bg-center"
-      style={{ backgroundImage: "url('/hero-bg.jpg')" }}
+      style={{
+        backgroundImage: "url('https://picsum.photos/seed/hero/1920/1080')",
+      }}
     >
       <div className="text-center text-white backdrop-blur-sm bg-black bg-opacity-30 p-6 rounded-lg">
         <h1 className="text-5xl font-bold mb-4 animate-[fadeInDown_1s_ease-in-out]">
@@ -25,4 +27,4 @@ function Hero() {
   );
 }
 
-export default Hero;
+//Hero;

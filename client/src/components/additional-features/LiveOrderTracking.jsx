@@ -1,13 +1,13 @@
 // components/LiveOrderTracking.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 const dummyOrders = [
-  { id: 1, status: 'Processing', progress: 20 },
-  { id: 2, status: 'Shipped', progress: 60 },
-  { id: 3, status: 'Out for Delivery', progress: 80 },
+  { id: 1, status: "Processing", progress: 20 },
+  { id: 2, status: "Shipped", progress: 60 },
+  { id: 3, status: "Out for Delivery", progress: 80 },
 ];
 
-function LiveOrderTracking() {
+export default function LiveOrderTracking() {
   const [orders, setOrders] = useState(dummyOrders);
 
   useEffect(() => {
@@ -15,8 +15,11 @@ function LiveOrderTracking() {
       setOrders((prevOrders) =>
         prevOrders.map((order) => {
           if (order.progress < 100) {
-            const newProgress = Math.min(order.progress + Math.floor(Math.random() * 10), 100);
-            const newStatus = newProgress === 100 ? 'Delivered' : order.status;
+            const newProgress = Math.min(
+              order.progress + Math.floor(Math.random() * 10),
+              100
+            );
+            const newStatus = newProgress === 100 ? "Delivered" : order.status;
             return { ...order, progress: newProgress, status: newStatus };
           }
           return order;
@@ -28,7 +31,9 @@ function LiveOrderTracking() {
 
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10 px-4">
-      <h1 className="text-3xl font-bold text-center mb-6">Live Order Tracking</h1>
+      <h1 className="text-3xl font-bold text-center mb-6">
+        Live Order Tracking
+      </h1>
       <div className="max-w-4xl mx-auto bg-white rounded-lg shadow p-6">
         {orders.map((order) => (
           <div key={order.id} className="mb-4">
@@ -47,4 +52,4 @@ function LiveOrderTracking() {
   );
 }
 
-export default LiveOrderTracking;
+//LiveOrderTracking;

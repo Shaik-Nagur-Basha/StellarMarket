@@ -1,14 +1,14 @@
 // components/UPSShippingIntegration.js
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
-function UPSShippingIntegration() {
+export default function UPSShippingIntegration() {
   const [shippingRate, setShippingRate] = useState(null);
   const [trackingInfo, setTrackingInfo] = useState(null);
 
   const fetchShippingRate = () => {
     // Simulate API call to fetch shipping rate
     setTimeout(() => {
-      setShippingRate('$12.99');
+      setShippingRate("$12.99");
     }, 1500);
   };
 
@@ -16,9 +16,9 @@ function UPSShippingIntegration() {
     // Simulate API call to fetch tracking information
     setTimeout(() => {
       setTrackingInfo({
-        status: 'In Transit',
-        expectedDelivery: '03/25/2025',
-        currentLocation: 'UPS Distribution Center',
+        status: "In Transit",
+        expectedDelivery: "03/25/2025",
+        currentLocation: "UPS Distribution Center",
       });
     }, 1500);
   };
@@ -31,7 +31,9 @@ function UPSShippingIntegration() {
   return (
     <div className="min-h-screen bg-gray-100 pt-20 pb-10 px-4">
       <div className="max-w-lg mx-auto bg-white rounded-lg shadow-xl p-6">
-        <h1 className="text-3xl font-bold mb-6 text-center">UPS Shipping Integration</h1>
+        <h1 className="text-3xl font-bold mb-6 text-center">
+          UPS Shipping Integration
+        </h1>
         <div className="mb-4">
           <h2 className="text-2xl font-bold mb-2">Shipping Rate</h2>
           {shippingRate ? (
@@ -57,4 +59,4 @@ function UPSShippingIntegration() {
   );
 }
 
-export default UPSShippingIntegration;
+//UPSShippingIntegration;

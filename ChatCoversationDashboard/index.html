@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Modern Chat Dashboard</title>
+    <!-- Tailwind CSS replaced with official CDN script -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome CDN -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <style>
+      /* Custom transitions and shadows for added depth */
+      .transition-transform {
+        transition: transform 0.3s ease;
+      }
+      .fade-in {
+        animation: fadeIn 0.2s ease-in;
+      }
+      @keyframes fadeIn {
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-gray-100">
+    <!-- Main container -->
+    <div class="flex h-screen">
+      <!-- Sidebar -->
+      <aside
+        class="w-80 bg-white dark:bg-gray-800 border-r border-gray-200 dark:border-gray-700 flex flex-col"
+      >
+        <!-- Search bar -->
+        <div class="p-4 border-b border-gray-200 dark:border-gray-700">
+          <input
+            type="text"
+            placeholder="Search..."
+            class="w-full px-3 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 focus:outline-none"
+            aria-label="Search conversations"
+          />
+        </div>
+        <!-- Conversations list -->
+        <ul class="flex-1 overflow-y-auto">
+          <!-- Conversation Item Example -->
+          <li
+            class="p-4 hover:bg-gray-50 dark:hover:bg-gray-700 cursor-pointer flex items-center border-b border-gray-200 dark:border-gray-700"
+          >
+            <img
+              src="https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg"
+              alt="John Doe"
+              class="w-10 h-10 rounded-full mr-3"
+            />
+            <div class="flex-1">
+              <div class="flex justify-between">
+                <h4 class="font-semibold">John Doe</h4>
+                <span class="text-xs text-gray-500">10:45 AM</span>
+              </div>
+              <p class="text-sm text-gray-500 truncate">
+                Last message preview goes here...
+              </p>
+            </div>
+          </li>
+          <!-- Repeat additional conversation items as needed -->
+        </ul>
+        <!-- User Profile & Settings -->
+        <div
+          class="p-4 border-t border-gray-200 dark:border-gray-700 flex items-center justify-between"
+        >
+          <div class="flex items-center">
+            <img
+              src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+              alt="My Profile"
+              class="w-10 h-10 rounded-full mr-2"
+            />
+            <span class="font-semibold">My Profile</span>
+          </div>
+          <button
+            class="text-gray-600 dark:text-gray-300"
+            aria-label="Settings"
+          >
+            <i class="fas fa-cog"></i>
+          </button>
+        </div>
+      </aside>
+
+      <!-- Chat Area -->
+      <main class="flex flex-col flex-1">
+        <!-- Header -->
+        <header
+          class="flex items-center p-4 border-b border-gray-200 dark:border-gray-700"
+        >
+          <img
+            src="https://letsenhance.io/static/73136da51c245e80edc6ccfe44888a99/1015f/MainBefore.jpg"
+            alt="Contact Profile"
+            class="w-8 h-8 rounded-full mr-3"
+          />
+          <div class="flex-1">
+            <h3 class="font-semibold">John Doe</h3>
+            <p class="text-xs text-gray-500">Online</p>
+          </div>
+          <div class="flex space-x-4">
+            <button
+              class="text-gray-600 dark:text-gray-300"
+              aria-label="Voice Call"
+            >
+              <i class="fas fa-phone"></i>
+            </button>
+            <button
+              class="text-gray-600 dark:text-gray-300"
+              aria-label="Video Call"
+            >
+              <i class="fas fa-video"></i>
+            </button>
+            <button
+              class="text-gray-600 dark:text-gray-300"
+              aria-label="More Options"
+            >
+              <i class="fas fa-ellipsis-v"></i>
+            </button>
+          </div>
+        </header>
+
+        <!-- Message List -->
+        <div
+          id="chat-messages"
+          class="flex-1 overflow-y-auto p-4 space-y-4"
+          style="max-height: calc(100vh - 120px)"
+        >
+          <!-- Received Message -->
+          <div class="flex items-start fade-in">
+            <img
+              src="https://images.unsplash.com/photo-1575936123452-b67c3203c357?fm=jpg&q=60&w=3000&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8aW1hZ2V8ZW58MHx8MHx8fDA%3D"
+              alt="Contact"
+              class="w-8 h-8 rounded-full mr-2"
+            />
+            <div>
+              <div class="bg-gray-200 dark:bg-gray-700 p-3 rounded-lg shadow">
+                <p>Hello, how are you?</p>
+              </div>
+              <span class="text-xs text-gray-500 mt-1 block">10:45 AM</span>
+            </div>
+          </div>
+          <!-- Sent Message -->
+          <div class="flex items-end justify-end fade-in">
+            <div>
+              <div class="bg-blue-500 text-white p-3 rounded-lg shadow">
+                <p>I'm good, thanks! How about you?</p>
+              </div>
+              <span class="text-xs text-gray-500 mt-1 block text-right"
+                >10:46 AM</span
+              >
+            </div>
+          </div>
+          <!-- More messages can be appended here -->
+        </div>
+
+        <!-- Message Input -->
+        <div class="p-4 border-t border-gray-200 dark:border-gray-700">
+          <div class="flex items-center">
+            <button
+              class="text-gray-600 dark:text-gray-300 mr-2"
+              aria-label="Emoji"
+            >
+              <i class="far fa-smile"></i>
+            </button>
+            <button
+              class="text-gray-600 dark:text-gray-300 mr-2"
+              aria-label="Attach File"
+            >
+              <i class="fas fa-paperclip"></i>
+            </button>
+            <input
+              type="text"
+              id="messageInput"
+              placeholder="Type a message"
+              class="flex-1 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-700 focus:outline-none resize-none"
+              aria-label="Type a message"
+            />
+            <button
+              id="sendButton"
+              class="ml-2 bg-green-500 hover:bg-green-600 text-white rounded-full p-2"
+              aria-label="Send Message"
+            >
+              <i class="fas fa-paper-plane"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+
+    <!-- JavaScript for interactive elements -->
+    <script>
+      // Pre-requisites:
+      // Ensure the Tailwind CSS and FontAwesome CDNs are loaded properly.
+      // Common mistake: Not including these CDN links may break the design.
+
+      // Dark mode toggle based on system preference (can be enhanced with a manual toggle)
+      const prefersDarkScheme = window.matchMedia(
+        "(prefers-color-scheme: dark)"
+      );
+      const currentTheme = localStorage.getItem("theme");
+      if (
+        currentTheme === "dark" ||
+        (!currentTheme && prefersDarkScheme.matches)
+      ) {
+        document.documentElement.classList.add("dark");
+      } else {
+        document.documentElement.classList.remove("dark");
+      }
+
+      // Message sending simulation
+      const sendButton = document.getElementById("sendButton");
+      const messageInput = document.getElementById("messageInput");
+      const chatMessages = document.getElementById("chat-messages");
+
+      sendButton.addEventListener("click", () => {
+        const messageText = messageInput.value.trim();
+        if (!messageText) return;
+
+        // Create a new sent message element
+        const messageContainer = document.createElement("div");
+        messageContainer.className = "flex items-end justify-end fade-in";
+        messageContainer.innerHTML = `
+        <div>
+          <div class="bg-blue-500 text-white p-3 rounded-lg shadow">
+            <p>${messageText}</p>
+          </div>
+          <span class="text-xs text-gray-500 mt-1 block text-right">Now</span>
+        </div>
+      `;
+        chatMessages.appendChild(messageContainer);
+
+        // Scroll to the latest message
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+        messageInput.value = "";
+      });
+
+      // Allow sending message with Enter key (prevent newline insertion)
+      messageInput.addEventListener("keypress", (e) => {
+        if (e.key === "Enter" && !e.shiftKey) {
+          e.preventDefault();
+          sendButton.click();
+        }
+      });
+    </script>
+  </body>
+</html>

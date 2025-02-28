@@ -9,10 +9,12 @@ import GitHubCopilot from "./components/GitHubCopilotAgentMode/GitHubCopilot";
 import MicrosoftCopilot from "./components/Copilot/MicrosoftCopilot";
 import DeepSeek3 from "./components/DeepSeek/DeepSeek3";
 import ChatGpt1 from "./components/ChatGpt/ChatGpt1";
+import MicrosoftCopilot1 from "./components/Copilot/MicrosoftCopilot1";
 
 export default function App() {
   const content = [
     "MicrosoftCopilot",
+    "MicrosoftCopilot1",
     "ChatGpt",
     "ChatGpt1",
     "DeepSeek",
@@ -28,6 +30,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Home content={content} />} />
         <Route path="/MicrosoftCopilot" element={<MicrosoftCopilot />} />
+        <Route path="/MicrosoftCopilot1" element={<MicrosoftCopilot1 />} />
         <Route path="/ChatGpt" element={<ChatGpt />} />
         <Route path="/ChatGpt1" element={<ChatGpt1 />} />
         <Route path="/DeepSeek" element={<DeepSeek />} />

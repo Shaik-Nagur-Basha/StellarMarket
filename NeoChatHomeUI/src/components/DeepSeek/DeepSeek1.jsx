@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 
-export default function ByDeepSeek1() {
+export default function DeepSeek1() {
   const [isScrolled, setIsScrolled] = useState(false);
   const [activeSlide, setActiveSlide] = useState(0);
   const slides = ["Featured Group 1", "Featured Group 2", "Featured Group 3"];

@@ -1,21 +1,41 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import ByDeepSeek from "./components/DeepSeek/ByDeepSeek";
-import ByDeepSeek1 from "./components/DeepSeek/ByDeepSeek1";
-import ByDeepSeek2 from "./components/DeepSeek/ByDeepSeek2";
-import ByChatGpt from "./components/ChatGpt/ByChatGpt";
-import ByGrok from "./components/Grok/ByGrok";
+import DeepSeek from "./components/DeepSeek/DeepSeek";
+import DeepSeek1 from "./components/DeepSeek/DeepSeek1";
+import DeepSeek2 from "./components/DeepSeek/DeepSeek2";
+import ChatGpt from "./components/ChatGpt/ChatGpt";
+import Grok from "./components/Grok/Grok";
 import Home from "./components/Home";
+import GitHubCopilot from "./components/GitHubCopilotAgentMode/GitHubCopilot";
+import MicrosoftCopilot from "./components/Copilot/MicrosoftCopilot";
+import DeepSeek3 from "./components/DeepSeek/DeepSeek3";
+import ChatGpt1 from "./components/ChatGpt/ChatGpt1";
 
 export default function App() {
+  const content = [
+    "MicrosoftCopilot",
+    "ChatGpt",
+    "ChatGpt1",
+    "DeepSeek",
+    "DeepSeek1",
+    "DeepSeek2",
+    "DeepSeek3",
+    "GitHubCopilot",
+    "Grok",
+  ];
+
   return (
     <Router>
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/deepseek" element={<ByDeepSeek />} />
-        <Route path="/deepseek1" element={<ByDeepSeek1 />} />
-        <Route path="/deepseek2" element={<ByDeepSeek2 />} />
-        <Route path="/chatgpt" element={<ByChatGpt />} />
-        <Route path="/grok" element={<ByGrok />} />
+        <Route path="/" element={<Home content={content} />} />
+        <Route path="/MicrosoftCopilot" element={<MicrosoftCopilot />} />
+        <Route path="/ChatGpt" element={<ChatGpt />} />
+        <Route path="/ChatGpt1" element={<ChatGpt1 />} />
+        <Route path="/DeepSeek" element={<DeepSeek />} />
+        <Route path="/DeepSeek1" element={<DeepSeek1 />} />
+        <Route path="/DeepSeek2" element={<DeepSeek2 />} />
+        <Route path="/DeepSeek3" element={<DeepSeek3 />} />
+        <Route path="/GitHubCopilot" element={<GitHubCopilot />} />
+        <Route path="/Grok" element={<Grok />} />
       </Routes>
     </Router>
   );

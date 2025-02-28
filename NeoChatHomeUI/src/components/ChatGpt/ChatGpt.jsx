@@ -29,7 +29,7 @@ const channels = [
   // ... add as many as you want
 ];
 
-export default function ByChatGpt() {
+export default function ChatGpt() {
   return (
     <div className="min-h-screen flex flex-col font-sans text-gray-900">
       {/* Example usage of Helmet (uncomment if react-helmet is installed)

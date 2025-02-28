@@ -1,9 +1,6 @@
 import React from "react";
 
-export default function Home() {
-  // Create an array for buttons 1 to 21.
-  const buttons = Array.from({ length: 5 }, (_, i) => i + 1);
-
+export default function Home({ content }) {
   // Array of gradient background classes.
   const gradients = [
     "bg-gradient-to-tl from-[#a7a0b7] via-[#fba45c] to-[#2abed0]",
@@ -122,9 +119,10 @@ export default function Home() {
     </svg>,
   ];
 
-  const content = ["DeepSeek", "ChatGPT", "DeepSeek1", "DeepSeek2", "Grok"];
+  const links = [...content.map((item) => "/" + item)];
 
-  const links = ["/deepseek", "/chatgpt", "/deepseek1", "/deepseek2", "/grok"];
+  // Create an array for buttons 1 to 21.
+  const buttons = Array.from({ length: content.length }, (_, i) => i + 1);
 
   const redirectTo = (url) => {
     window.location.href = url;

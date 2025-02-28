@@ -6,7 +6,7 @@ import HeroByGrok from "./HeroByGrok";
 import ChannelsSectionByGrok from "./ChannelsSectionByGrok";
 import FooterByGrok from "./FooterByGrok";
 
-export default function ByGrok() {
+export default function Grok() {
   return (
     <>
       <header>

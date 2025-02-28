@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function ByDeepSeek() {
+export default function DeepSeek() {
   const [activeSlide, setActiveSlide] = React.useState(0);
   const slides = ["Featured Group 1", "Featured Group 2", "Featured Group 3"];
 

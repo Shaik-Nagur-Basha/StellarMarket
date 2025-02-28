@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function ByDeepSeek2() {
+export default function DeepSeek2() {
   const [activeTab, setActiveTab] = useState("communities");
 
   // Sample data

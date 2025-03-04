@@ -10,6 +10,9 @@ import MicrosoftCopilot from "./components/Copilot/MicrosoftCopilot";
 import DeepSeek3 from "./components/DeepSeek/DeepSeek3";
 import ChatGpt1 from "./components/ChatGpt/ChatGpt1";
 import MicrosoftCopilot1 from "./components/Copilot/MicrosoftCopilot1";
+import GitHubCopilot1 from "./components/GitHubCopilotAgentMode/GitHubCopilot1";
+import GitHubCopilot2 from "./components/GitHubCopilotAgentMode/GitHubCopilot2";
+import GC3SignUpPage from "./components/GitHubCopilotAgentMode/GC3SignUpPage";
 
 export default function App() {
   const content = [
@@ -22,6 +25,9 @@ export default function App() {
     "DeepSeek2",
     "DeepSeek3",
     "GitHubCopilot",
+    "GitHubCopilot1",
+    "GitHubCopilot2",
+    "GC3SignUpPage",
     "Grok",
   ];
 
@@ -38,6 +44,9 @@ export default function App() {
         <Route path="/DeepSeek2" element={<DeepSeek2 />} />
         <Route path="/DeepSeek3" element={<DeepSeek3 />} />
         <Route path="/GitHubCopilot" element={<GitHubCopilot />} />
+        <Route path="/GitHubCopilot1" element={<GitHubCopilot1 />} />
+        <Route path="/GitHubCopilot2" element={<GitHubCopilot2 />} />
+        <Route path="/GC3SignUpPage" element={<GC3SignUpPage />} />
         <Route path="/Grok" element={<Grok />} />
       </Routes>
     </Router>

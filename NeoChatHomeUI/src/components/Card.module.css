@@ -1,0 +1,478 @@
+.card {
+  position: relative;
+  isolation: isolate;
+  transform: translateY(0);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 1rem;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  width: 100%;
+  --x: 50%;
+  --y: 50%;
+}
+
+.card:hover {
+  transform: translateY(-8px) scale(1.04);
+}
+
+.cardGlow {
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  border-radius: inherit;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.cardGlow::before,
+.cardGlow::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: conic-gradient(
+    from var(--angle),
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: rotate 8s linear infinite;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cardGlow::before {
+  top: 0;
+  left: 0;
+  transform-origin: center;
+}
+
+.cardGlow::after {
+  bottom: 0;
+  right: 0;
+  transform-origin: center;
+  animation: rotateReverse 8s linear infinite;
+}
+
+.card:hover .cardGlow::before,
+.card:hover .cardGlow::after {
+  opacity: 0.5;
+}
+
+.cardContent {
+  position: relative;
+  background: rgba(17, 24, 39, 0.95);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1rem;
+  padding: 1rem;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  transition: all 0.3s ease;
+  backdrop-filter: none;
+}
+
+/* Cloud Effect */
+.cardContent::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.04) 25%,
+    transparent 50%
+  );
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.card:hover .cardContent::before {
+  opacity: 1;
+}
+
+.card:hover .cardContent {
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.mediaContainer {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16/9;
+  margin: 0 auto;
+  border-radius: 0.75rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  flex-grow: 1;
+}
+
+.cardMedia {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.cardMedia img,
+.cardMedia video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.card:hover .cardMedia img,
+.card:hover .cardMedia video {
+  transform: scale(1.05);
+}
+
+.cardCaption {
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+  padding: 0.25rem 0.5rem;
+  background: rgba(17, 24, 39, 0.95);
+  border-radius: 0.5rem;
+  transform: translateX(120%);
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  font-size: 0.7rem;
+  line-height: 1;
+  max-width: 75%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 10;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.card:hover .cardCaption {
+  transform: translateX(0);
+}
+
+.cardTitle {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin: 1rem 0;
+  background: linear-gradient(to right, #fff, #ccc);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+
+.card:hover .cardTitle {
+  background: linear-gradient(to right, #fff, #fff);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+.cardButton {
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(-20px) scale(0);
+  opacity: 0;
+  padding: 0.5rem 1.25rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  overflow: hidden;
+  transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  backdrop-filter: blur(8px);
+  z-index: 10;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: fit-content;
+  min-width: min-content;
+}
+
+.card:hover .cardButton {
+  transform: translateX(-50%) translateY(0) scale(1);
+  opacity: 1;
+}
+
+.cardButton::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: inherit;
+  filter: brightness(1.2);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cardButton::after {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    45deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(45deg) translateY(-100%);
+}
+
+.card:hover .cardButton::after {
+  animation: shine 2s infinite;
+}
+
+.buttonContent {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+  width: auto;
+  overflow: hidden;
+  position: relative;
+}
+
+.card:hover .buttonContent {
+  width: 0;
+  animation: typewriter 1s steps(20) forwards;
+  position: relative;
+}
+
+.card:hover .buttonContent::after {
+  content: "";
+  position: absolute;
+  right: -2px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.75);
+  animation: blinkCursor 0.75s steps(2) infinite, hideCursor 0.1s forwards 1s;
+}
+
+@keyframes typewriter {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes blinkCursor {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes hideCursor {
+  to {
+    opacity: 0;
+  }
+}
+
+.buttonIcon {
+  transition: none;
+}
+
+.card:hover .buttonIcon {
+  animation: moveIcon 1.5s infinite;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rotateReverse {
+  from {
+    transform: rotate(360deg);
+  }
+  to {
+    transform: rotate(0deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.8;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
+@keyframes shimmerEffect {
+  0% {
+    transform: rotate(45deg) translateY(-100%);
+  }
+  100% {
+    transform: rotate(45deg) translateY(100%);
+  }
+}
+
+@keyframes moveIcon {
+  0%,
+  100% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(4px);
+  }
+}
+
+@keyframes shine {
+  0% {
+    transform: rotate(45deg) translateY(-100%);
+  }
+  100% {
+    transform: rotate(45deg) translateY(100%);
+  }
+}
+
+@keyframes buttonAppear {
+  0% {
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes dropIn {
+  0% {
+    transform: translateX(-50%) translateY(-20px) scale(0);
+    opacity: 0;
+  }
+  50% {
+    transform: translateX(-50%) translateY(5px) scale(1.1);
+  }
+  75% {
+    transform: translateX(-50%) translateY(-3px) scale(0.95);
+  }
+  100% {
+    transform: translateX(-50%) translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.card:hover .cardButton {
+  animation: dropIn 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.shimmer {
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.8) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2s infinite;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+/* Modern scrollbar styles */
+.cardContent::-webkit-scrollbar {
+  width: 4px;
+}
+
+.cardContent::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+}
+
+.cardContent::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 2px;
+}
+
+.cardContent::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.4);
+}
+
+/* Enhanced responsive breakpoints */
+@media (max-width: 640px) {
+  .card {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .cardButton {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.875rem;
+  }
+  .cardCaption {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.65rem;
+  }
+}
+
+@media (min-width: 641px) and (max-width: 1024px) {
+  .card {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .cardButton {
+    padding: 0.5rem 1rem;
+    font-size: 0.9375rem;
+  }
+}
+
+@media (min-width: 1025px) and (max-width: 1536px) {
+  .card {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+  .cardButton {
+    padding: 0.5rem 1.25rem;
+    font-size: 1rem;
+  }
+}
+
+@media (min-width: 1537px) {
+  .card {
+    width: 100%;
+    aspect-ratio: 16/9;
+  }
+}
+

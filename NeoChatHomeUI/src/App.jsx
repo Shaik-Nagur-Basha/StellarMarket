@@ -17,48 +17,50 @@ import GC3SignInPage from "./components/GitHubCopilotAgentMode/GC3SignInPage";
 import ErrorPage from "./components/ErrorPage";
 
 export default function App() {
-  const content = [
-    "MicrosoftCopilot",
-    "MicrosoftCopilot1",
-    "ChatGpt",
-    "ChatGpt1",
-    "DeepSeek",
-    "DeepSeek1",
-    "DeepSeek2",
-    "DeepSeek3",
-    "GitHubCopilot",
-    "GitHubCopilot1",
-    "GitHubCopilot2",
-    "GC3SignUpPage",
-    "GC3SignInPage",
-    "Grok",
+  const contentArray = [
+    { title: "MicrosoftCopilot", type: "image", madeBy: "MicrosoftCopilot" },
+    { title: "MicrosoftCopilot1", type: "image", madeBy: "MicrosoftCopilot1" },
+    { title: "ChatGpt", type: "image", madeBy: "ChatGpt" },
+    { title: "ChatGpt1", type: "video", madeBy: "ChatGpt1" },
+    { title: "DeepSeek", type: "image", madeBy: "DeepSeek" },
+    { title: "DeepSeek1", type: "image", madeBy: "DeepSeek1" },
+    { title: "DeepSeek2", type: "image", madeBy: "DeepSeek2" },
+    { title: "DeepSeek3", type: "video", madeBy: "DeepSeek3" },
+    { title: "GitHubCopilot", type: "image", madeBy: "GitHubCopilot" },
+    { title: "GitHubCopilot1", type: "video", madeBy: "GitHubCopilot1" },
+    { title: "GitHubCopilot2", type: "video", madeBy:"GitHubCopilot2"  },
+    { title: "GC3SignUpPage", type: "video", madeBy: "GC3SignUpPage" },
+    { title: "GC3SignInPage", type: "video", madeBy: "GC3SignInPage" },
+    { title: "Grok", type: "image", madeBy: "Grok" },
+    { title: "ErrorPage", type: "video", madeBy:"Agent Mode With C 3.5 S"  },
   ];
 
   return (
-      <Router>
-        <Routes>
-          <Route path="/" element={<Home content={content} />} />
-          <Route path="/MicrosoftCopilot" element={<MicrosoftCopilot />} />
-          <Route path="/MicrosoftCopilot1" element={<MicrosoftCopilot1 />} />
-          <Route path="/ChatGpt" element={<ChatGpt />} />
-          <Route path="/ChatGpt1" element={<ChatGpt1 />} />
-          <Route path="/DeepSeek" element={<DeepSeek />} />
-          <Route path="/DeepSeek1" element={<DeepSeek1 />} />
-          <Route path="/DeepSeek2" element={<DeepSeek2 />} />
-          <Route path="/DeepSeek3" element={<DeepSeek3 />} />
-          <Route path="/GitHubCopilot" element={<GitHubCopilot />} />
-          <Route path="/GitHubCopilot1" element={<GitHubCopilot1 />} />
-          <Route path="/GitHubCopilot2" element={<GitHubCopilot2 />} />
-          <Route path="/GC3SignUpPage" element={<GC3SignUpPage />} />
-          <Route path="/GC3SignInPage" element={<GC3SignInPage />} />
-          <Route path="/Grok" element={<Grok />} />
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home contentArray={contentArray} />} />
+        <Route path="/MicrosoftCopilot" element={<MicrosoftCopilot />} />
+        <Route path="/MicrosoftCopilot1" element={<MicrosoftCopilot1 />} />
+        <Route path="/ChatGpt" element={<ChatGpt />} />
+        <Route path="/ChatGpt1" element={<ChatGpt1 />} />
+        <Route path="/DeepSeek" element={<DeepSeek />} />
+        <Route path="/DeepSeek1" element={<DeepSeek1 />} />
+        <Route path="/DeepSeek2" element={<DeepSeek2 />} />
+        <Route path="/DeepSeek3" element={<DeepSeek3 />} />
+        <Route path="/GitHubCopilot" element={<GitHubCopilot />} />
+        <Route path="/GitHubCopilot1" element={<GitHubCopilot1 />} />
+        <Route path="/GitHubCopilot2" element={<GitHubCopilot2 />} />
+        <Route path="/GC3SignUpPage" element={<GC3SignUpPage />} />
+        <Route path="/GC3SignInPage" element={<GC3SignInPage />} />
+        <Route path="/Grok" element={<Grok />} />
+        <Route path="/ErrorPage" element={<ErrorPage />} />
 
-          {/* Error page - catches all undefined routes */}
-          <Route
-            path="*"
-            element={<ErrorPage code="404" message="Page not found" />}
-          />
-        </Routes>
-      </Router>
+        {/* Error page - catches all undefined routes */}
+        <Route
+          path="*"
+          element={<ErrorPage code="404" message="Page not found" />}
+        />
+      </Routes>
+    </Router>
   );
 }

@@ -1,7 +1,24 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
+import styles from "./Card.module.css";
 
-export default function Home({ content }) {
-  // Array of gradient background classes.
+export default function Home({ contentArray }) {
+  const navigate = useNavigate();
+
+  // Content metadata for the cards
+  const contentMetadata = contentArray.map((content) => ({
+    title: content.title,
+    madeBy: content.madeBy,
+    type: content.type,
+    media: `../public/${content.type}s/${
+      content.title + (content.type === "image" ? ".png" : ".mp4")
+    }`,
+  }));
+
+  console.log("contentArray", contentArray);
+  console.log(contentMetadata);
+
+  // Gradients array for random application
   const gradients = [
     "bg-gradient-to-tl from-[#a7a0b7] via-[#fba45c] to-[#2abed0]",
     "bg-gradient-to-tr from-[#0cd0ca] via-[#d8a274] to-[#8468aa]",
@@ -19,135 +36,78 @@ export default function Home({ content }) {
     "bg-gradient-to-r from-orange-500 to-yellow-500",
   ];
 
-  // Updated array of icon JSX elements (8 icons).
-  const icons = [
-    <svg
-      className="w-6 h-6 mr-3 transition-transform duration-300 group-hover:rotate-90"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M13 7l5 5m0 0l-5 5m5-5H6"
-      />
-    </svg>,
-    <svg
-      className="w-6 h-6 mr-3 transition-transform duration-300 group-hover:rotate-180"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M12 4v16m8-8H4" />
-    </svg>,
-    <svg
-      className="w-6 h-6 mr-3 transition-transform duration-300 group-hover:scale-125"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 2l7 10-7 10-7-10 7-10z"
-      />
-    </svg>,
-    <svg
-      className="w-6 h-6 mr-3 transition-transform duration-300 group-hover:scale-110"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-    </svg>,
-    <svg
-      className="w-6 h-6 mr-3 transition-transform duration-300 group-hover:rotate-45"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01L12 2z"
-      />
-    </svg>,
-    <svg
-      className="w-6 h-6 mr-3 transition-transform duration-300 group-hover:scale-125"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"
-      />
-    </svg>,
-    <svg
-      className="w-6 h-6 mr-3 transition-transform duration-300 group-hover:rotate-180"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V4a2 2 0 10-4 0v1.341C8.67 6.165 8 7.388 8 8.75V14.16c0 .538-.214 1.055-.595 1.435L6 17h5m4 0v1a3 3 0 11-6 0v-1m6 0H9"
-      />
-    </svg>,
-    <svg
-      className="w-6 h-6 mr-3 transition-transform duration-300 group-hover:rotate-90"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      viewBox="0 0 24 24"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        d="M13 10V3L4 14h7v7l9-11h-7z"
-      />
-    </svg>,
-  ];
-
-  const links = [...content.map((item) => "/" + item)];
-
-  // Create an array for buttons 1 to 21.
-  const buttons = Array.from({ length: content.length }, (_, i) => i + 1);
-
-  const redirectTo = (url) => {
-    window.location.href = url;
+  const redirectTo = (path) => {
+    navigate(path);
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-gray-800 to-gray-900 p-4">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-        {buttons.map((num) => {
-          // Cycle through gradients and icons based on index.
-          const gradientClass =
-            gradients[Math.floor(Math.random() * gradients.length)];
-          const icon = icons[Math.floor(Math.random() * icons.length)];
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black p-4 sm:p-6 lg:p-8">
+      <div className="max-w-[2000px] mx-auto">
+        <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 animate-gradient">
+          Welcome to NeoChat
+        </h1>
 
-          return (
-            <button
-              key={num}
-              onClick={() => redirectTo(`${links[num - 1]}`)}
-              className={`group flex items-center justify-center px-6 py-4 ${gradientClass} text-white font-semibold rounded-lg shadow-xl transition transform duration-300 hover:scale-105 hover:shadow-2xl focus:outline-none focus:ring-2 focus:ring-offset-2`}
-            >
-              {icon}
-              {content[num - 1]}
-            </button>
-          );
-        })}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+          {contentMetadata.map((item, index) => {
+            const randomGradient =
+              gradients[Math.floor(Math.random() * gradients.length)];
+
+            return (
+              <div
+                key={index}
+                className={`${styles.card} group`}
+                // style={{
+                //   transitionDelay: `${index * 100}ms`,
+                // }}
+              >
+                <div className={`${styles.cardGlow} ${randomGradient}`} />
+
+                <div className={styles.cardContent}>
+                  <div className={styles.mediaContainer}>
+                    <div className={styles.cardMedia}>
+                      {item.type === "video" ? (
+                        <video autoPlay muted loop playsInline>
+                          <source src={item.media} type="video/mp4" />
+                        </video>
+                      ) : (
+                        <img src={item.media} alt={item.title} loading="lazy" />
+                      )}
+                      <div className={styles.cardCaption}>
+                        <p className="text-xs sm:text-sm text-gray-200">
+                          {item.madeBy}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <button
+                    onClick={() => redirectTo(`/${item.title}`)}
+                    className={`${styles.cardButton} ${randomGradient}`}
+                  >
+                    <div className={styles.buttonContent}>
+                      <span>{item.title}</span>
+                      <svg
+                        className={styles.buttonIcon}
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        width="16"
+                        height="16"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M13 7l5 5m0 0l-5 5m5-5H6"
+                        />
+                      </svg>
+                    </div>
+                  </button>
+                </div>
+              </div>
+            );
+          })}
+        </div>
       </div>
     </div>
   );

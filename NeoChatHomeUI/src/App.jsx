@@ -13,6 +13,7 @@ import MicrosoftCopilot1 from "./components/Copilot/MicrosoftCopilot1";
 import GitHubCopilot1 from "./components/GitHubCopilotAgentMode/GitHubCopilot1";
 import GitHubCopilot2 from "./components/GitHubCopilotAgentMode/GitHubCopilot2";
 import GC3SignUpPage from "./components/GitHubCopilotAgentMode/GC3SignUpPage";
+import GC3SignInPage from "./components/GitHubCopilotAgentMode/GC3SignInPage";
 
 export default function App() {
   const content = [
@@ -28,6 +29,7 @@ export default function App() {
     "GitHubCopilot1",
     "GitHubCopilot2",
     "GC3SignUpPage",
+    "GC3SignInPage",
     "Grok",
   ];
 
@@ -47,6 +49,7 @@ export default function App() {
         <Route path="/GitHubCopilot1" element={<GitHubCopilot1 />} />
         <Route path="/GitHubCopilot2" element={<GitHubCopilot2 />} />
         <Route path="/GC3SignUpPage" element={<GC3SignUpPage />} />
+        <Route path="/GC3SignInPage" element={<GC3SignInPage />} />
         <Route path="/Grok" element={<Grok />} />
       </Routes>
     </Router>

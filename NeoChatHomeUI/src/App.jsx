@@ -14,6 +14,7 @@ import GitHubCopilot1 from "./components/GitHubCopilotAgentMode/GitHubCopilot1";
 import GitHubCopilot2 from "./components/GitHubCopilotAgentMode/GitHubCopilot2";
 import GC3SignUpPage from "./components/GitHubCopilotAgentMode/GC3SignUpPage";
 import GC3SignInPage from "./components/GitHubCopilotAgentMode/GC3SignInPage";
+import ErrorPage from "./components/ErrorPage";
 
 export default function App() {
   const content = [
@@ -34,24 +35,30 @@ export default function App() {
   ];
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Home content={content} />} />
-        <Route path="/MicrosoftCopilot" element={<MicrosoftCopilot />} />
-        <Route path="/MicrosoftCopilot1" element={<MicrosoftCopilot1 />} />
-        <Route path="/ChatGpt" element={<ChatGpt />} />
-        <Route path="/ChatGpt1" element={<ChatGpt1 />} />
-        <Route path="/DeepSeek" element={<DeepSeek />} />
-        <Route path="/DeepSeek1" element={<DeepSeek1 />} />
-        <Route path="/DeepSeek2" element={<DeepSeek2 />} />
-        <Route path="/DeepSeek3" element={<DeepSeek3 />} />
-        <Route path="/GitHubCopilot" element={<GitHubCopilot />} />
-        <Route path="/GitHubCopilot1" element={<GitHubCopilot1 />} />
-        <Route path="/GitHubCopilot2" element={<GitHubCopilot2 />} />
-        <Route path="/GC3SignUpPage" element={<GC3SignUpPage />} />
-        <Route path="/GC3SignInPage" element={<GC3SignInPage />} />
-        <Route path="/Grok" element={<Grok />} />
-      </Routes>
-    </Router>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home content={content} />} />
+          <Route path="/MicrosoftCopilot" element={<MicrosoftCopilot />} />
+          <Route path="/MicrosoftCopilot1" element={<MicrosoftCopilot1 />} />
+          <Route path="/ChatGpt" element={<ChatGpt />} />
+          <Route path="/ChatGpt1" element={<ChatGpt1 />} />
+          <Route path="/DeepSeek" element={<DeepSeek />} />
+          <Route path="/DeepSeek1" element={<DeepSeek1 />} />
+          <Route path="/DeepSeek2" element={<DeepSeek2 />} />
+          <Route path="/DeepSeek3" element={<DeepSeek3 />} />
+          <Route path="/GitHubCopilot" element={<GitHubCopilot />} />
+          <Route path="/GitHubCopilot1" element={<GitHubCopilot1 />} />
+          <Route path="/GitHubCopilot2" element={<GitHubCopilot2 />} />
+          <Route path="/GC3SignUpPage" element={<GC3SignUpPage />} />
+          <Route path="/GC3SignInPage" element={<GC3SignInPage />} />
+          <Route path="/Grok" element={<Grok />} />
+
+          {/* Error page - catches all undefined routes */}
+          <Route
+            path="*"
+            element={<ErrorPage code="404" message="Page not found" />}
+          />
+        </Routes>
+      </Router>
   );
 }

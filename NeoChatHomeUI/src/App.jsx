@@ -16,6 +16,7 @@ import GC3SignUpPage from "./components/GitHubCopilotAgentMode/GC3SignUpPage";
 import GC3SignInPage from "./components/GitHubCopilotAgentMode/GC3SignInPage";
 import ErrorPage from "./components/ErrorPage";
 import Navigation from "./components/Navigation";
+import Portfolio from "./components/Portfolio/Portfolio";
 
 export default function App() {
   const contentArray = [
@@ -34,6 +35,7 @@ export default function App() {
     { title: "ChatGpt", type: "image", madeBy: "ChatGpt" },
     { title: "GitHubCopilot", type: "image", madeBy: "GitHubCopilot" },
     { title: "Grok", type: "image", madeBy: "Grok" },
+    { title: "Portfolio", type: "video", madeBy: "Agent Mode With C 3.5 S" },
   ];
 
   return (
@@ -55,6 +57,7 @@ export default function App() {
         <Route path="/GC3SignUpPage" element={<GC3SignUpPage />} />
         <Route path="/GC3SignInPage" element={<GC3SignInPage />} />
         <Route path="/Grok" element={<Grok />} />
+        <Route path="/Portfolio" element={<Portfolio />} />
         <Route path="/ErrorPage" element={<ErrorPage />} />
 
         {/* Error page - catches all undefined routes */}

@@ -19,21 +19,21 @@ import Navigation from "./components/Navigation";
 
 export default function App() {
   const contentArray = [
-    { title: "MicrosoftCopilot", type: "image", madeBy: "MicrosoftCopilot" },
-    { title: "MicrosoftCopilot1", type: "image", madeBy: "MicrosoftCopilot1" },
-    { title: "ChatGpt", type: "image", madeBy: "ChatGpt" },
-    { title: "ChatGpt1", type: "video", madeBy: "ChatGpt1" },
-    { title: "DeepSeek", type: "image", madeBy: "DeepSeek" },
-    { title: "DeepSeek1", type: "image", madeBy: "DeepSeek1" },
-    { title: "DeepSeek2", type: "image", madeBy: "DeepSeek2" },
-    { title: "DeepSeek3", type: "video", madeBy: "DeepSeek3" },
-    { title: "GitHubCopilot", type: "image", madeBy: "GitHubCopilot" },
-    { title: "GitHubCopilot1", type: "video", madeBy: "GitHubCopilot1" },
-    { title: "GitHubCopilot2", type: "video", madeBy: "GitHubCopilot2" },
+    { title: "ErrorPage", type: "video", madeBy: "Agent Mode With C 3.5 S" },
     { title: "GC3SignUpPage", type: "video", madeBy: "GC3SignUpPage" },
     { title: "GC3SignInPage", type: "video", madeBy: "GC3SignInPage" },
+    { title: "GitHubCopilot2", type: "video", madeBy: "GitHubCopilot2" },
+    { title: "DeepSeek2", type: "image", madeBy: "DeepSeek2" },
+    { title: "DeepSeek3", type: "video", madeBy: "DeepSeek3" },
+    { title: "DeepSeek", type: "image", madeBy: "DeepSeek" },
+    { title: "DeepSeek1", type: "image", madeBy: "DeepSeek1" },
+    { title: "GitHubCopilot1", type: "video", madeBy: "GitHubCopilot1" },
+    { title: "ChatGpt1", type: "video", madeBy: "ChatGpt1" },
+    { title: "MicrosoftCopilot1", type: "image", madeBy: "MicrosoftCopilot1" },
+    { title: "MicrosoftCopilot", type: "image", madeBy: "MicrosoftCopilot" },
+    { title: "ChatGpt", type: "image", madeBy: "ChatGpt" },
+    { title: "GitHubCopilot", type: "image", madeBy: "GitHubCopilot" },
     { title: "Grok", type: "image", madeBy: "Grok" },
-    { title: "ErrorPage", type: "video", madeBy: "Agent Mode With C 3.5 S" },
   ];
 
   return (

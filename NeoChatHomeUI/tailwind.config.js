@@ -44,6 +44,22 @@ export default {
           "0%": { transform: "translateX(-100%)" },
           "100%": { transform: "translateX(100%)" },
         },
+        rotate: {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        gridMove: {
+          "0%": { transform: "translateX(0) translateY(0)" },
+          "100%": { transform: "translateX(-50px) translateY(-50px)" },
+        },
+        "pulse-slow": {
+          "0%, 100%": { opacity: "0.4" },
+          "50%": { opacity: "0.8" },
+        },
+        "bg-shimmer": {
+          "0%": { backgroundPosition: "200% 0" },
+          "100%": { backgroundPosition: "-200% 0" },
+        },
       },
       animation: {
         tilt: "tilt 10s infinite linear",
@@ -55,6 +71,9 @@ export default {
         "slide-up": "slideUp 0.5s ease-out",
         scale: "scale 0.3s ease-in-out",
         shimmer: "shimmer 2s infinite",
+        rotate: "rotate 20s linear infinite",
+        "pulse-slow": "pulse-slow 4s ease-in-out infinite",
+        "bg-shimmer": "bg-shimmer 8s ease-in-out infinite",
       },
       backgroundSize: {
         auto: "auto",

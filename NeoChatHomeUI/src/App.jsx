@@ -15,6 +15,7 @@ import GitHubCopilot2 from "./components/GitHubCopilotAgentMode/GitHubCopilot2";
 import GC3SignUpPage from "./components/GitHubCopilotAgentMode/GC3SignUpPage";
 import GC3SignInPage from "./components/GitHubCopilotAgentMode/GC3SignInPage";
 import ErrorPage from "./components/ErrorPage";
+import Navigation from "./components/Navigation";
 
 export default function App() {
   const contentArray = [
@@ -28,15 +29,16 @@ export default function App() {
     { title: "DeepSeek3", type: "video", madeBy: "DeepSeek3" },
     { title: "GitHubCopilot", type: "image", madeBy: "GitHubCopilot" },
     { title: "GitHubCopilot1", type: "video", madeBy: "GitHubCopilot1" },
-    { title: "GitHubCopilot2", type: "video", madeBy:"GitHubCopilot2"  },
+    { title: "GitHubCopilot2", type: "video", madeBy: "GitHubCopilot2" },
     { title: "GC3SignUpPage", type: "video", madeBy: "GC3SignUpPage" },
     { title: "GC3SignInPage", type: "video", madeBy: "GC3SignInPage" },
     { title: "Grok", type: "image", madeBy: "Grok" },
-    { title: "ErrorPage", type: "video", madeBy:"Agent Mode With C 3.5 S"  },
+    { title: "ErrorPage", type: "video", madeBy: "Agent Mode With C 3.5 S" },
   ];
 
   return (
     <Router>
+      <Navigation />
       <Routes>
         <Route path="/" element={<Home contentArray={contentArray} />} />
         <Route path="/MicrosoftCopilot" element={<MicrosoftCopilot />} />

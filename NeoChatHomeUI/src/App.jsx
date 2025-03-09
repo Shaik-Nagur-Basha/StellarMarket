@@ -17,10 +17,16 @@ import GC3SignInPage from "./components/GitHubCopilotAgentMode/GC3SignInPage";
 import ErrorPage from "./components/ErrorPage";
 import Navigation from "./components/Navigation";
 import Portfolio from "./components/Portfolio/Portfolio";
+import Portfolio1 from "./components/Portfolio/Portfolio1";
+import Portfolio2 from "./components/Portfolio/Portfolio2";
+import ChatDashboard from "./components/ChatDashboard/ChatDashboard";
+import ChatDashboard1 from "./components/ChatDashboard/ChatDashboard1";
+import ExpenseDashboard from "./components/ExpenseDashboard/ExpenseDashboard";
 
 export default function App() {
   const contentArray = [
     { title: "ErrorPage", type: "video", madeBy: "Agent Mode With C 3.5 S" },
+    { title: "ExpenseDashboard", type: "video", madeBy: "DeepSeek" },
     { title: "GC3SignUpPage", type: "video", madeBy: "GC3SignUpPage" },
     { title: "GC3SignInPage", type: "video", madeBy: "GC3SignInPage" },
     { title: "GitHubCopilot2", type: "video", madeBy: "GitHubCopilot2" },
@@ -29,13 +35,17 @@ export default function App() {
     { title: "DeepSeek", type: "image", madeBy: "DeepSeek" },
     { title: "DeepSeek1", type: "image", madeBy: "DeepSeek1" },
     { title: "GitHubCopilot1", type: "video", madeBy: "GitHubCopilot1" },
+    { title: "Portfolio", type: "video", madeBy: "Agent Mode With C 3.5 S" },
+    { title: "Portfolio1", type: "video", madeBy: "ChatGPT" },
+    { title: "Portfolio2", type: "video", madeBy: "ChatGPT" },
     { title: "ChatGpt1", type: "video", madeBy: "ChatGpt1" },
     { title: "MicrosoftCopilot1", type: "image", madeBy: "MicrosoftCopilot1" },
     { title: "MicrosoftCopilot", type: "image", madeBy: "MicrosoftCopilot" },
     { title: "ChatGpt", type: "image", madeBy: "ChatGpt" },
     { title: "GitHubCopilot", type: "image", madeBy: "GitHubCopilot" },
     { title: "Grok", type: "image", madeBy: "Grok" },
-    { title: "Portfolio", type: "video", madeBy: "Agent Mode With C 3.5 S" },
+    { title: "ChatDashboard1", type: "image", madeBy: "ChatGPT" },
+    { title: "ChatDashboard", type: "image", madeBy: "ChatGPT" },
   ];
 
   return (
@@ -58,6 +68,11 @@ export default function App() {
         <Route path="/GC3SignInPage" element={<GC3SignInPage />} />
         <Route path="/Grok" element={<Grok />} />
         <Route path="/Portfolio" element={<Portfolio />} />
+        <Route path="/Portfolio1" element={<Portfolio1 />} />
+        <Route path="/Portfolio2" element={<Portfolio2 />} />
+        <Route path="/ChatDashboard" element={<ChatDashboard />} />
+        <Route path="/ChatDashboard1" element={<ChatDashboard1 />} />
+        <Route path="/ExpenseDashboard" element={<ExpenseDashboard />} />
         <Route path="/ErrorPage" element={<ErrorPage />} />
 
         {/* Error page - catches all undefined routes */}

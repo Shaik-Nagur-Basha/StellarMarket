@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FaUser, FaMoon, FaInfoCircle, FaSearch } from "react-icons/fa";
 
 export default function GitHubCopilot1() {
-  const [darkMode, setDarkMode] = useState(false);
+  const [darkMode, setDarkMode] = useState(true);
 
   const toggleDarkMode = () => {
     setDarkMode(!darkMode);

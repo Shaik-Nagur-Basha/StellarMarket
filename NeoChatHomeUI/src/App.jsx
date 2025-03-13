@@ -22,11 +22,13 @@ import Portfolio2 from "./components/Portfolio/Portfolio2";
 import ChatDashboard from "./components/ChatDashboard/ChatDashboard";
 import ChatDashboard1 from "./components/ChatDashboard/ChatDashboard1";
 import ExpenseDashboard from "./components/ExpenseDashboard/ExpenseDashboard";
+import MarketDashboard from "./components/MarketDashboard/MarketDashboard";
 
 export default function App() {
   const contentArray = [
     { title: "ErrorPage", type: "video", madeBy: "Agent Mode With C 3.5 S" },
-    { title: "ExpenseDashboard", type: "video", madeBy: "DeepSeek" },
+    { title: "ExpenseDashboard", type: "video", madeBy: "Agent Mode With C 3.5 S" },
+    { title: "MarketDashboard", type: "video", madeBy: "Agent Mode With C 3.5 S" },
     { title: "GC3SignUpPage", type: "video", madeBy: "GC3SignUpPage" },
     { title: "GC3SignInPage", type: "video", madeBy: "GC3SignInPage" },
     { title: "GitHubCopilot2", type: "video", madeBy: "GitHubCopilot2" },
@@ -73,6 +75,7 @@ export default function App() {
         <Route path="/ChatDashboard" element={<ChatDashboard />} />
         <Route path="/ChatDashboard1" element={<ChatDashboard1 />} />
         <Route path="/ExpenseDashboard" element={<ExpenseDashboard />} />
+        <Route path="/MarketDashboard" element={<MarketDashboard />} />
         <Route path="/ErrorPage" element={<ErrorPage />} />
 
         {/* Error page - catches all undefined routes */}

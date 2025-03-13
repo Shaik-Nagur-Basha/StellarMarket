@@ -104,8 +104,20 @@ export default function Home({ contentArray }) {
       {/* Content container */}
       <div className="relative z-10 p-4 sm:p-6 lg:p-8">
         <div className="max-w-[2000px] mx-auto">
-          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600 animate-gradient">
-            Welcome to AI's Responses
+          <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-8 sm:mb-12">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
+              Welcome to{" "}
+            </span>
+            <span
+              className={`inline-block ${
+                gradients[Math.floor(Math.random() * gradients.length)]
+              } text-transparent bg-clip-text`}
+              style={{
+                filter: "drop-shadow(1px 1px 2px black)",
+              }}
+            >
+              AI's Responses
+            </span>
           </h1>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">

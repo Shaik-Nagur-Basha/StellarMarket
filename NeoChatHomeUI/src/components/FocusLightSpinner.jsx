@@ -3,7 +3,40 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import styles from "./Card.module.css";
 
-export default function FocusLightInnerToTheCardInHome({ contentArray }) {
+export default function FocusLightSpinner({
+  contentArray = [
+    { title: "ErrorPage", type: "video", madeBy: "Agent Mode With C 3.5 S" },
+    {
+      title: "StellarMarket",
+      type: "video",
+      madeBy: "Agent Mode With C 3.5 S",
+    },
+    {
+      title: "FocusLightSpinner",
+      type: "video",
+      madeBy: "Agent Mode With C 3.5 S",
+    },
+    {
+      title: "ExpenseDashboard",
+      type: "video",
+      madeBy: "Agent Mode With C 3.5 S",
+    },
+    {
+      title: "MarketDashboard",
+      type: "video",
+      madeBy: "Agent Mode With C 3.5 S",
+    },
+    { title: "GC3SignUpPage", type: "video", madeBy: "GC3SignUpPage" },
+    { title: "GC3SignInPage", type: "video", madeBy: "GC3SignInPage" },
+    { title: "GitHubCopilot2", type: "video", madeBy: "GitHubCopilot2" },
+    { title: "DeepSeek2", type: "image", madeBy: "DeepSeek2" },
+    { title: "DeepSeek3", type: "video", madeBy: "DeepSeek3" },
+    { title: "DeepSeek", type: "image", madeBy: "DeepSeek" },
+    { title: "DeepSeek1", type: "image", madeBy: "DeepSeek1" },
+    { title: "GitHubCopilot1", type: "video", madeBy: "GitHubCopilot1" },
+    { title: "Portfolio", type: "video", madeBy: "Agent Mode With C 3.5 S" },
+  ],
+}) {
   const navigate = useNavigate();
   const location = useLocation();
   const [loadingStates, setLoadingStates] = useState({});
@@ -126,7 +159,7 @@ export default function FocusLightInnerToTheCardInHome({ contentArray }) {
     });
 
     return () => fadeObserver.disconnect();
-  }, [contentArray]);
+  }, []);
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">

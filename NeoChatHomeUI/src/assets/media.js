@@ -25,7 +25,7 @@ import Portfolio from "./Videos/Portfolio.mp4";
 import Portfolio1 from "./Videos/Portfolio1.mp4";
 import Portfolio2 from "./Videos/Portfolio2.mp4";
 import StellarMarket from "./Videos/StellarMarket.mp4";
-import FocusLightInnerToTheCardInHome from "../components/FocusLightInnerToTheCardInHome.mp4";
+import FocusLightSpinner from "./videos/FocusLightSpinner.mp4";
 
 export const images = {
   ChatDashboard,
@@ -55,5 +55,5 @@ export const videos = {
   Portfolio1,
   Portfolio2,
   StellarMarket,
-  FocusLightInnerToTheCardInHome,
+  FocusLightSpinner,
 };

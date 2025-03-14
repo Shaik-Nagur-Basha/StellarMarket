@@ -1,0 +1,11 @@
+export { default as ParallaxBanner } from "./ParallaxBanner";
+export { default as Products } from "./Products";
+export { default as AdvancedRecommendations } from "./AdvancedRecommendations";
+export { default as FAQ } from "./FAQ";
+export { default as VideoGallery } from "./VideoGallery";
+export { default as SocialMediaFeed } from "./SocialMediaFeed";
+export { default as AugmentedRealityViewer } from "./AugmentedRealityViewer";
+export { default as Newsletter } from "./Newsletter";
+export { default as Footer } from "./Footer";
+export { default as ScrollToTop } from "./ScrollToTop";
+export { default as ChatWidget } from "./ChatWidget";

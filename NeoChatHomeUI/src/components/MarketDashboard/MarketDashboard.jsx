@@ -1,6 +1,6 @@
 import React from "react";
-import { useTheme } from "./hooks/useTheme";
-import Navbar from "./components/Navbar";
+import { useTheme } from "../hooks/useTheme";
+import Navbar from "./components/navbar";
 import Dashboard from "./components/Dashboard";
 import ProductsSection from "./components/products";
 import Cart from "./components/cart";

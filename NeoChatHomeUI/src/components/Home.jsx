@@ -1,20 +1,26 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useCallback, useRef } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
+import { images, videos } from "../assets/media";
 import styles from "./Card.module.css";
 
 export default function Home({ contentArray }) {
   const navigate = useNavigate();
   const location = useLocation();
   const [loadingStates, setLoadingStates] = useState({});
+  const [mediaLoadStartTimes, setMediaLoadStartTimes] = useState({});
+  const [loading, setLoading] = useState(false);
+  const [hasMore, setHasMore] = useState(true);
+  const observer = useRef();
+  const lastCardRef = useRef();
 
-  // Content metadata for the cards
+  // Content metadata for the cards - Updated to use imported media
   const contentMetadata = contentArray.map((content) => ({
     title: content.title,
     madeBy: content.madeBy,
     type: content.type,
-    media: `../public/${content.type}s/${
-      content.title + (content.type === "image" ? ".png" : ".mp4")
-    }`,
+    media:
+      content.type === "image" ? images[content.title] : videos[content.title],
   }));
 
   // Gradients array for random application
@@ -39,14 +45,34 @@ export default function Home({ contentArray }) {
     navigate(path);
   };
 
+  const handleMediaLoadStart = (itemId) => {
+    // Record the start time when media starts loading
+    setMediaLoadStartTimes((prev) => ({
+      ...prev,
+      [itemId]: Date.now(),
+    }));
+
+    // Ensure loading state is true when loading starts
+    setLoadingStates((prev) => ({
+      ...prev,
+      [itemId]: true,
+    }));
+  };
+
   const handleMediaLoad = (itemId) => {
-    // Add a small delay to ensure smoother transition
+    const startTime = mediaLoadStartTimes[itemId];
+    const loadTime = Date.now() - startTime;
+
+    // Ensure minimum spinner display time of 500ms for better UX
+    const minimumSpinnerTime = 500;
+    const remainingTime = Math.max(0, minimumSpinnerTime - loadTime);
+
     setTimeout(() => {
       setLoadingStates((prev) => ({
         ...prev,
         [itemId]: false,
       }));
-    }, 300);
+    }, remainingTime);
   };
 
   const handleMediaError = (itemId) => {
@@ -60,11 +86,40 @@ export default function Home({ contentArray }) {
   useEffect(() => {
     // Initialize loading states for all items
     const initialLoadingStates = contentArray.reduce((acc, item) => {
-      acc[item.title] = true;
+      acc[item.title] = true; // Start with loading true
       return acc;
     }, {});
     setLoadingStates(initialLoadingStates);
+
+    // Initialize media load start times
+    const initialLoadStartTimes = contentArray.reduce((acc, item) => {
+      acc[item.title] = Date.now();
+      return acc;
+    }, {});
+    setMediaLoadStartTimes(initialLoadStartTimes);
   }, [contentArray]);
+
+  // Add intersection observer for infinite scroll
+  const lastElementRef = useCallback(
+    (node) => {
+      if (loading) return;
+      if (observer.current) observer.current.disconnect();
+
+      observer.current = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting && hasMore) {
+          setLoading(true);
+          // Simulate loading more content
+          setTimeout(() => {
+            setLoading(false);
+            setHasMore(false); // Disable after first load for demo
+          }, 1500);
+        }
+      });
+
+      if (node) observer.current.observe(node);
+    },
+    [loading, hasMore]
+  );
 
   return (
     <div className="relative min-h-screen overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black">
@@ -151,61 +206,102 @@ export default function Home({ contentArray }) {
                 : "#ffffff";
 
               return (
-                <div
+                <motion.div
                   key={index}
-                  className={`${styles.card} group`}
+                  ref={
+                    index === contentMetadata.length - 1 ? lastElementRef : null
+                  }
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  className={`${styles.card} group card-animate transform transition-all duration-300 hover:-translate-y-1`}
                   style={{
                     "--gradient-color": gradientColor,
                   }}
                 >
                   <div className={`${styles.cardGlow} ${randomGradient}`} />
 
-                  <div className={styles.cardContent}>
+                  <div
+                    className={`${styles.cardContent} bg-gray-800/50 backdrop-blur-lg rounded-xl overflow-hidden shadow-lg hover:shadow-purple-500/10 border border-gray-700/50 transition-all duration-300`}
+                  >
                     <div className={styles.mediaContainer}>
-                      <div
-                        className={`${styles.cardMedia} ${
-                          loadingStates[item.title] ? styles.loading : ""
-                        }`}
-                      >
-                        {loadingStates[item.title] && (
-                          <div className={styles.skeleton} />
-                        )}
-                        {item.type === "video" ? (
-                          <video
-                            autoPlay
-                            muted
-                            loop
-                            playsInline
-                            onLoadedData={() => handleMediaLoad(item.title)}
-                            onError={() => handleMediaError(item.title)}
-                          >
-                            <source src={item.media} type="video/mp4" />
-                          </video>
-                        ) : (
-                          <img
-                            src={item.media}
-                            alt={item.title}
-                            loading="lazy"
-                            onLoad={() => handleMediaLoad(item.title)}
-                            onError={() => handleMediaError(item.title)}
-                          />
-                        )}
-                        <div className={styles.cardCaption}>
-                          <p className="text-xs sm:text-sm text-gray-200">
-                            {item.madeBy}
-                          </p>
+                      <div className={`${styles.cardMedia} relative group`}>
+                        <div
+                          className={`${
+                            loadingStates[item.title]
+                              ? "opacity-0"
+                              : "opacity-100"
+                          } transition-opacity duration-300`}
+                        >
+                          {item.type === "video" ? (
+                            <video
+                              key={item.media}
+                              autoPlay
+                              muted
+                              loop
+                              playsInline
+                              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                              onLoadStart={() =>
+                                handleMediaLoadStart(item.title)
+                              }
+                              onLoadedData={() => handleMediaLoad(item.title)}
+                              onError={() => handleMediaError(item.title)}
+                            >
+                              <source src={item.media} type="video/mp4" />
+                            </video>
+                          ) : (
+                            <img
+                              key={item.media}
+                              src={item.media}
+                              alt={item.title}
+                              loading="lazy"
+                              className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700"
+                              onLoadStart={() =>
+                                handleMediaLoadStart(item.title)
+                              }
+                              onLoad={() => handleMediaLoad(item.title)}
+                              onError={() => handleMediaError(item.title)}
+                            />
+                          )}
+                          <div className={styles.cardCaption}>
+                            <p className="text-xs sm:text-sm text-gray-200">
+                              {item.madeBy}
+                            </p>
+                          </div>
                         </div>
+
+                        {loadingStates[item.title] && (
+                          <div className="absolute inset-0 flex items-center justify-center bg-gray-900/40 backdrop-blur-sm">
+                            <div className="relative w-14 h-14">
+                              {/* Outer ring */}
+                              <div className="absolute inset-0 rounded-full border-[3px] border-gray-700"></div>
+
+                              {/* Spinning gradient border */}
+                              <div className="absolute inset-0 rounded-full border-[3px] border-transparent animate-[spin_1.5s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0%,transparent_20%,theme(colors.blue.400)_50%,theme(colors.purple.400)_80%,transparent_100%)] [mask:linear-gradient(white,transparent_50%)]"></div>
+
+                              {/* Inner glow */}
+                              <div className="absolute inset-[2px] rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 animate-pulse blur-sm"></div>
+
+                              {/* Center dot */}
+                              <div className="absolute inset-0 flex items-center justify-center">
+                                <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-400 to-purple-400 animate-ping"></div>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-300" />
                       </div>
                     </div>
 
                     <button
                       onClick={() => redirectTo(`/${item.title}`)}
-                      className={`${styles.cardButton} ${randomGradient}`}
+                      className={`${styles.cardButton} ${randomGradient} bg-gradient-to-r hover:shadow-lg hover:shadow-purple-500/20 transition-all duration-300`}
                     >
                       <div className={styles.buttonContent}>
-                        <span>{item.title}</span>
+                        <span className="font-medium">{item.title}</span>
                         <svg
-                          className={styles.buttonIcon}
+                          className={`${styles.buttonIcon} transform group-hover:translate-x-1 transition-transform`}
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
@@ -222,10 +318,48 @@ export default function Home({ contentArray }) {
                       </div>
                     </button>
                   </div>
-                </div>
+                </motion.div>
               );
             })}
           </div>
+
+          <AnimatePresence>
+            {loading && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.8 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
+                className="flex justify-center items-center mt-8 gap-3"
+              >
+                <div className="relative">
+                  <div className="w-14 h-14">
+                    {/* Outer ring */}
+                    <div className="absolute inset-0 rounded-full border-[3px] border-gray-200 dark:border-gray-700"></div>
+
+                    {/* Spinning gradient border */}
+                    <div className="absolute inset-0 rounded-full border-[3px] border-transparent animate-[spin_1.5s_linear_infinite] bg-[conic-gradient(from_0deg,transparent_0%,transparent_20%,theme(colors.blue.500)_50%,theme(colors.purple.500)_80%,transparent_100%)] [mask:linear-gradient(white,transparent_50%)] dark:bg-[conic-gradient(from_0deg,transparent_0%,transparent_20%,theme(colors.blue.400)_50%,theme(colors.purple.400)_80%,transparent_100%)]"></div>
+
+                    {/* Inner glow */}
+                    <div className="absolute inset-[2px] rounded-full bg-gradient-to-br from-blue-500/20 to-purple-500/20 dark:from-blue-400/10 dark:to-purple-400/10 animate-pulse blur-sm"></div>
+
+                    {/* Center dot */}
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <div className="w-2 h-2 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 dark:from-blue-400 dark:to-purple-400 animate-ping"></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex flex-col items-start">
+                  <span className="text-gray-700 dark:text-gray-200 font-medium">
+                    Loading more content
+                  </span>
+                  <span className="text-sm text-gray-500 dark:text-gray-400">
+                    Please wait...
+                  </span>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </div>

@@ -3,81 +3,137 @@ import React, { useState } from "react";
 
 export default function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [message, setMessage] = useState("");
-  const [chatLog, setChatLog] = useState([]);
+  const [messages, setMessages] = useState([
+    { id: 1, type: "bot", text: "Hello! How can I help you today?" },
+  ]);
+  const [inputText, setInputText] = useState("");
 
   const toggleChat = () => {
     setIsOpen(!isOpen);
   };
 
-  const handleSendMessage = (e) => {
+  const handleSubmit = (e) => {
     e.preventDefault();
-    if (message.trim() !== "") {
-      setChatLog([...chatLog, { text: message, sender: "user" }]);
-      // Dummy response from chat bot
-      setChatLog((prev) => [
-        ...prev,
-        {
-          text: "Thanks for reaching out! We'll get back to you soon.",
-          sender: "bot",
-        },
-      ]);
-      setMessage("");
-    }
+    if (!inputText.trim()) return;
+
+    // Add user message
+    const newMessage = { id: Date.now(), type: "user", text: inputText };
+    setMessages([...messages, newMessage]);
+    setInputText("");
+
+    // Simulate bot response
+    setTimeout(() => {
+      const botResponse = {
+        id: Date.now() + 1,
+        type: "bot",
+        text: "Thanks for your message! Our team will get back to you soon.",
+      };
+      setMessages((prev) => [...prev, botResponse]);
+    }, 1000);
   };
 
   return (
-    <div className="fixed bottom-4 right-4 z-50">
-      {isOpen && (
-        <div className="w-80 h-96 bg-white rounded-lg shadow-xl flex flex-col">
-          <div className="bg-blue-500 text-white p-4 rounded-t-lg flex justify-between items-center">
-            <span>Live Chat</span>
-            <button onClick={toggleChat} className="text-xl">
-              &times;
-            </button>
-          </div>
-          <div className="flex-1 p-4 overflow-y-auto">
-            {chatLog.map((msg, index) => (
+    <>
+      {/* Chat Toggle Button */}
+      <button
+        onClick={toggleChat}
+        className={`fixed bottom-4 right-4 p-4 rounded-full bg-primary-500 text-white shadow-lg hover:bg-primary-600 transition-all duration-300 transform ${
+          isOpen ? "scale-0 opacity-0" : "scale-100 opacity-100"
+        }`}
+        aria-label="Toggle chat"
+      >
+        <svg
+          className="h-6 w-6"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
+          />
+        </svg>
+      </button>
+
+      {/* Chat Panel */}
+      <div
+        className={`fixed bottom-4 right-4 w-96 max-w-[calc(100vw-2rem)] bg-white/90 dark:bg-gray-800/90 backdrop-blur-md rounded-2xl shadow-glass transition-all duration-300 transform ${
+          isOpen
+            ? "translate-y-0 opacity-100"
+            : "translate-y-8 opacity-0 pointer-events-none"
+        }`}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between p-4 border-b border-gray-200 dark:border-gray-700">
+          <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+            Customer Support
+          </h3>
+          <button
+            onClick={toggleChat}
+            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 transition-colors"
+          >
+            <svg
+              className="h-6 w-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          </button>
+        </div>
+
+        {/* Messages */}
+        <div className="h-96 overflow-y-auto p-4 space-y-4">
+          {messages.map((message) => (
+            <div
+              key={message.id}
+              className={`flex ${
+                message.type === "user" ? "justify-end" : "justify-start"
+              }`}
+            >
               <div
-                key={index}
-                className={`mb-2 ${
-                  msg.sender === "user" ? "text-right" : "text-left"
+                className={`max-w-[80%] rounded-2xl p-4 ${
+                  message.type === "user"
+                    ? "bg-primary-500 text-white ml-4"
+                    : "bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white mr-4"
                 }`}
               >
-                <p
-                  className={`inline-block p-2 rounded ${
-                    msg.sender === "user"
-                      ? "bg-blue-100 text-blue-800"
-                      : "bg-gray-200 text-gray-800"
-                  }`}
-                >
-                  {msg.text}
-                </p>
+                <p className="text-sm">{message.text}</p>
               </div>
-            ))}
-          </div>
-          <form onSubmit={handleSendMessage} className="p-4 border-t">
+            </div>
+          ))}
+        </div>
+
+        {/* Input */}
+        <form
+          onSubmit={handleSubmit}
+          className="p-4 border-t border-gray-200 dark:border-gray-700"
+        >
+          <div className="flex space-x-2">
             <input
               type="text"
-              value={message}
-              onChange={(e) => setMessage(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
+              value={inputText}
+              onChange={(e) => setInputText(e.target.value)}
               placeholder="Type your message..."
-              required
+              className="flex-1 px-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500"
             />
-          </form>
-        </div>
-      )}
-      {!isOpen && (
-        <button
-          onClick={toggleChat}
-          className="bg-blue-500 hover:bg-blue-700 text-white p-4 rounded-full shadow-lg transition duration-300"
-        >
-          Chat
-        </button>
-      )}
-    </div>
+            <button
+              type="submit"
+              className="px-4 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+            >
+              Send
+            </button>
+          </div>
+        </form>
+      </div>
+    </>
   );
 }
-
-//ChatWidget;

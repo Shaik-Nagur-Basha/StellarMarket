@@ -15,8 +15,5 @@
     "url": "https://github.com/Shaik-Nagur-Basha/StellarMarket/issues"
   },
   "homepage": "https://github.com/Shaik-Nagur-Basha/StellarMarket#readme",
-  "description": "",
-  "dependencies": {
-    "zustand": "^5.0.3"
-  }
+  "description": ""
 }

@@ -4,7 +4,7 @@ services:
     env: static
     buildCommand: npm run build
     startCommand: npm start
-    staticPublishPath: ./client/dist
+    staticPublishPath: ./client
     envVars:
       - key: NODE_VERSION
         value: 16

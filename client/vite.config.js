@@ -3,11 +3,15 @@ import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
   plugins: [react()],
-  base: './', // Make sure assets are loaded with relative paths
+  base: "/", // Change to root-relative paths
   server: {
     host: true,
     strictPort: true,
     port: process.env.PORT || 3000,
+    headers: {
+      "Content-Type": "application/javascript",
+    },
+    middlewareMode: "html",
   },
   build: {
     outDir: "dist",
@@ -15,23 +19,17 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          chart: ["chart.js"],
+          vendor: ["react", "react-dom", "react-router-dom"],
         },
-        format: "es",
-        // Ensure proper file extensions for modules
-        entryFileNames: "assets/[name].[hash].js",
-        chunkFileNames: "assets/[name].[hash].js",
-        assetFileNames: "assets/[name].[hash].[ext]",
       },
     },
     target: "esnext",
-    modulePreload: {
-      polyfill: true,
-    },
+    manifest: true,
   },
-  // Ensure JS files are handled as modules
   optimizeDeps: {
-    entries: ['src/main.jsx']
-  }
+    include: ["react", "react-dom", "react-router-dom"],
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".ts", ".tsx"],
+  },
 });

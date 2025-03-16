@@ -5,7 +5,6 @@
   "type": "module",
   "scripts": {
     "build": "cd client && npm install && npm run build",
-    "start": "cd client && npm run preview -- --host --port $PORT",
     "dev": "cd client && npm run dev"
   },
   "repository": {

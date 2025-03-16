@@ -1,17 +1,8 @@
 services:
   - type: static
     name: stellarmarket
-    buildCommand: npm run build
+    buildCommand: cd client && npm install && npm run build
     publishDir: client/dist
-    staticPublishPath: client/dist
-    env: static
-    envVars:
-      - key: NODE_VERSION
-        value: 16
-    headers:
-      - path: /*
-        name: Cache-Control
-        value: public, max-age=31536000, immutable
     routes:
       - type: rewrite
         source: /*

@@ -4,10 +4,9 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "start": "cd client && npm run preview",
     "build": "cd client && npm install && npm run build",
-    "dev": "cd client && npm run dev",
-    "preview": "cd client && npm run preview -- --host --port $PORT"
+    "start": "cd client && npm run preview -- --host --port $PORT",
+    "dev": "cd client && npm run dev"
   },
   "repository": {
     "type": "git",

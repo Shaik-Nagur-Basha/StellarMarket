@@ -25,10 +25,12 @@ import ExpenseDashboard from "./components/ExpenseDashboard/ExpenseDashboard";
 import MarketDashboard from "./components/MarketDashboard/MarketDashboard";
 import StellarMarket from "./components/StellarMarket/StellarMarket";
 import FocusLightSpinner from "./components/FocusLightSpinner";
+import StellarMarket_v2 from "./components/StellarMarket_v2/StellarMarket_v2";
 
 export default function App() {
   const contentArray = [
     { title: "ErrorPage", type: "video", madeBy: "Agent Mode With C 3.5 S" },
+    { title: "StellarMarket_v2", type: "video", madeBy: "Agent Mode With C 3.5 S" },
     { title: "StellarMarket", type: "video", madeBy: "Agent Mode With C 3.5 S" },
     { title: "FocusLightSpinner", type: "video", madeBy: "Agent Mode With C 3.5 S" },
     { title: "ExpenseDashboard", type: "video", madeBy: "Agent Mode With C 3.5 S" },
@@ -82,6 +84,7 @@ export default function App() {
         <Route path="/MarketDashboard" element={<MarketDashboard />} />
         <Route path="/StellarMarket" element={<StellarMarket />} />
         <Route path="/FocusLightSpinner" element={<FocusLightSpinner />} />
+        <Route path="/StellarMarket_v2" element={<StellarMarket_v2 />} />
         <Route path="/ErrorPage" element={<ErrorPage />} />
 
         {/* Error page - catches all undefined routes */}

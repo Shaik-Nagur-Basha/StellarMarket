@@ -2,17 +2,18 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>Professional Product Selling Website</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!-- Disable strict MIME checking (use only for testing) -->
-    <meta
-      http-equiv="Content-Security-Policy"
-      content="script-src 'unsafe-inline'"
-    />
+    <title>Professional Product Selling Website</title>
+    <!-- Add proper MIME type meta tag -->
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   </head>
   <body class="bg-gray-100">
-    <!-- React will mount here -->
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    <!-- Add modulepreload polyfill -->
+    <script type="module">
+      import { polyfillCountryFlagEmojis } from 'https://cdn.skypack.dev/country-flag-emoji-polyfill';
+      polyfillCountryFlagEmojis();
+    </script>
   </body>
 </html>

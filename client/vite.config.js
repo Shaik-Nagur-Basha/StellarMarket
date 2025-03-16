@@ -4,9 +4,6 @@ import react from "@vitejs/plugin-react-swc";
 export default defineConfig({
   plugins: [react()],
   server: {
-    headers: {
-      "Content-Type": "text/javascript",
-    },
     host: true,
     strictPort: true,
     port: process.env.PORT || 3000,
@@ -21,19 +18,22 @@ export default defineConfig({
           chart: ["chart.js"],
         },
         format: "es",
-        entryFileNames: "[name]-[hash].mjs",
-        chunkFileNames: "[name]-[hash].mjs",
-        assetFileNames: "[name]-[hash][extname]",
+        // Ensure proper file extensions for modules
+        entryFileNames: "assets/[name].[hash].js",
+        chunkFileNames: "assets/[name].[hash].js",
+        assetFileNames: "assets/[name].[hash].[ext]",
       },
     },
     target: "esnext",
-    modulePreload: true,
-    chunkSizeWarningLimit: 1000,
-    minify: "terser",
-    terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
+    modulePreload: {
+      polyfill: true,
+    },
+  },
+  // Add proper MIME type handling
+  optimizeDeps: {
+    esbuildOptions: {
+      loader: {
+        ".js": "jsx",
       },
     },
   },

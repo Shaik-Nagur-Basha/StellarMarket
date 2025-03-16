@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: stellarmarket
+    env: static
+    buildCommand: npm run build
+    startCommand: npm start
+    staticPublishPath: ./client/dist
+    envVars:
+      - key: NODE_VERSION
+        value: 16
+      - key: PORT
+        value: 3000

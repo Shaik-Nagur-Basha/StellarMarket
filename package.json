@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
+    "start": "cd client && npm run preview",
+    "build": "cd client && npm install && npm run build",
+    "dev": "cd client && npm run dev",
+    "install-client": "cd client && npm install",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -15,5 +19,8 @@
     "url": "https://github.com/Shaik-Nagur-Basha/StellarMarket/issues"
   },
   "homepage": "https://github.com/Shaik-Nagur-Basha/StellarMarket#readme",
-  "description": ""
+  "description": "A modern e-commerce platform built with React and Vite",
+  "engines": {
+    "node": ">=16.0.0"
+  }
 }

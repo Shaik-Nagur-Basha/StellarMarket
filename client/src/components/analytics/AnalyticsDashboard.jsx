@@ -1,8 +1,6 @@
 // components/AnalyticsDashboard.js
 import React, { useState } from "react";
 import { faker } from "@faker-js/faker";
-import PerformanceMonitor from "./PerformanceMonitor";
-import UserBehaviorTracker from "./UserBehaviorTracker";
 
 const generateDummyData = () => ({
   totalSales: faker.number.int({ min: 50000, max: 150000 }),

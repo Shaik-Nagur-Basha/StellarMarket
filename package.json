@@ -4,8 +4,10 @@
   "main": "index.js",
   "type": "module",
   "scripts": {
-    "build": "cd client && npm install && npm run build",
-    "start": "cd client && npm run preview -- --host --port $PORT"
+    "dev": "node api/index.js",
+    "start": "node api/index.js",
+    "build": "npm install && npm install --prefix client && npm run build --prefix client",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
@@ -20,5 +22,8 @@
   "description": "A modern e-commerce platform built with React and Vite",
   "engines": {
     "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }

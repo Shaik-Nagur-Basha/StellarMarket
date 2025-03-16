@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "build": "cd client && npm install && npm run build",
+    "start": "cd client && npm run preview -- --host --port $PORT",
     "dev": "cd client && npm run dev"
   },
   "repository": {
@@ -20,5 +21,8 @@
   "description": "A modern e-commerce platform built with React and Vite",
   "engines": {
     "node": ">=16.0.0"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
   }
 }

@@ -1,9 +1,0 @@
-services:
-  - type: static
-    name: stellarmarket
-    buildCommand: cd client && npm install && npm run build
-    publishDir: client/dist
-    routes:
-      - type: rewrite
-        source: /*
-        destination: /index.html

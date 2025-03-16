@@ -1,29 +1,47 @@
 // components/AnalyticsDashboard.js
-import React, { useState } from "react";
-import { faker } from "@faker-js/faker";
+import React, { useState, useEffect } from "react";
 
-const generateDummyData = () => ({
-  totalSales: faker.number.int({ min: 50000, max: 150000 }),
-  orders: faker.number.int({ min: 500, max: 2000 }),
-  customers: faker.number.int({ min: 1000, max: 5000 }),
-  averageOrderValue: faker.number.float({ min: 50, max: 200, precision: 0.01 }),
-  monthlyData: Array.from({ length: 12 }, () => ({
-    sales: faker.number.int({ min: 5000, max: 15000 }),
-    orders: faker.number.int({ min: 50, max: 200 }),
-    visitors: faker.number.int({ min: 1000, max: 5000 }),
-  })),
-  topProducts: Array.from({ length: 5 }, () => ({
-    name: faker.commerce.productName(),
-    sales: faker.number.int({ min: 100, max: 1000 }),
-    revenue: faker.number.float({ min: 1000, max: 10000, precision: 0.01 }),
-    image: faker.image.urlPicsumPhotos({ width: 64, height: 64 }),
-  })),
-});
+const generateDummyData = async () => {
+  const { faker } = await import("@faker-js/faker");
+  return {
+    totalSales: faker.number.int({ min: 50000, max: 150000 }),
+    orders: faker.number.int({ min: 500, max: 2000 }),
+    customers: faker.number.int({ min: 1000, max: 5000 }),
+    averageOrderValue: faker.number.float({
+      min: 50,
+      max: 200,
+      precision: 0.01,
+    }),
+    monthlyData: Array.from({ length: 12 }, () => ({
+      sales: faker.number.int({ min: 5000, max: 15000 }),
+      orders: faker.number.int({ min: 50, max: 200 }),
+      visitors: faker.number.int({ min: 1000, max: 5000 }),
+    })),
+    topProducts: Array.from({ length: 5 }, () => ({
+      name: faker.commerce.productName(),
+      sales: faker.number.int({ min: 100, max: 1000 }),
+      revenue: faker.number.float({ min: 1000, max: 10000, precision: 0.01 }),
+      image: faker.image.urlPicsumPhotos({ width: 64, height: 64 }),
+    })),
+  };
+};
 
 export default function AnalyticsDashboard() {
-  const [data] = useState(generateDummyData());
+  const [data, setData] = useState(null);
   const [selectedMetric, setSelectedMetric] = useState("sales");
   const [timeframe, setTimeframe] = useState("monthly");
+
+  useEffect(() => {
+    generateDummyData().then(setData);
+  }, []);
+
+  if (!data) {
+    return (
+      <div className="flex items-center justify-center h-screen">
+        <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
+      </div>
+    );
+  }
 
   const months = [
     "Jan",

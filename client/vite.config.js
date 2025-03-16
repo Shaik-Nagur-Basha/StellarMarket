@@ -13,28 +13,9 @@ export default defineConfig({
     assetsDir: "assets",
     rollupOptions: {
       output: {
-        manualChunks: (id) => {
-          if (id.includes("node_modules")) {
-            if (id.includes("react")) {
-              return "react-vendor";
-            }
-            if (id.includes("chart.js")) {
-              return "chart";
-            }
-            if (id.includes("faker")) {
-              return "faker";
-            }
-            return "vendor";
-          }
-          if (id.includes("components/analytics")) {
-            return "analytics";
-          }
-          if (id.includes("components/media")) {
-            return "media";
-          }
-          if (id.includes("components/additional-features")) {
-            return "features";
-          }
+        manualChunks: {
+          "react-vendor": ["react", "react-dom", "react-router-dom"],
+          chart: ["chart.js"],
         },
       },
     },

@@ -1,9 +1,13 @@
 services:
-  - type: web
+  - type: static
     name: stellarmarket
-    env: static
     buildCommand: npm run build
+    publishDir: client/dist
     staticPublishPath: client/dist
+    env: static
+    envVars:
+      - key: NODE_VERSION
+        value: 16
     headers:
       - path: /*
         name: Cache-Control

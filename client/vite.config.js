@@ -3,6 +3,7 @@ import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
   plugins: [react()],
+  base: './', // Make sure assets are loaded with relative paths
   server: {
     host: true,
     strictPort: true,
@@ -29,12 +30,8 @@ export default defineConfig({
       polyfill: true,
     },
   },
-  // Add proper MIME type handling
+  // Ensure JS files are handled as modules
   optimizeDeps: {
-    esbuildOptions: {
-      loader: {
-        ".js": "jsx",
-      },
-    },
-  },
+    entries: ['src/main.jsx']
+  }
 });

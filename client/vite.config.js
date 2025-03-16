@@ -7,42 +7,38 @@ export default defineConfig({
     host: true,
     strictPort: true,
     port: process.env.PORT || 3000,
-    proxy: {
-      "/api": {
-        target: "http://localhost:3000",
-        secure: false,
-      },
-    },
-  },
-  resolve: {
-    extensions: [".js", ".jsx"],
   },
   build: {
+    outDir: "dist",
+    assetsDir: "assets",
     rollupOptions: {
-      input: {
-        main: "./index.html",
-      },
       output: {
-        manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          "ui-components": [
-            "./src/components/ui/ChatWidget.jsx",
-            "./src/components/ui/DarkModeToggle.jsx",
-            "./src/components/ui/LanguageSwitcher.jsx",
-            "./src/components/ui/NotificationWidget.jsx",
-          ],
-          features: [
-            "./src/components/additional-features/AugmentedRealityViewer.jsx",
-          ],
-          analytics: ["./src/components/analytics/AnalyticsDashboard.jsx"],
-          media: [
-            "./src/components/media/SocialMediaFeed.jsx",
-            "./src/components/media/VideoGallery.jsx",
-          ],
+        manualChunks: (id) => {
+          if (id.includes("node_modules")) {
+            if (id.includes("react")) {
+              return "react-vendor";
+            }
+            if (id.includes("chart.js")) {
+              return "chart";
+            }
+            if (id.includes("faker")) {
+              return "faker";
+            }
+            return "vendor";
+          }
+          if (id.includes("components/analytics")) {
+            return "analytics";
+          }
+          if (id.includes("components/media")) {
+            return "media";
+          }
+          if (id.includes("components/additional-features")) {
+            return "features";
+          }
         },
       },
     },
-    chunkSizeWarningLimit: 2000,
+    chunkSizeWarningLimit: 1000,
     minify: "terser",
     terserOptions: {
       compress: {
@@ -50,8 +46,5 @@ export default defineConfig({
         drop_debugger: true,
       },
     },
-  },
-  optimizeDeps: {
-    include: ["react", "react-dom", "react-router-dom"],
   },
 });

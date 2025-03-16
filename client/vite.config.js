@@ -3,14 +3,11 @@ import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
   plugins: [react()],
-  base: '/', // Ensure root-relative paths
+  base: "/", // Ensure root-relative paths
   server: {
     host: true,
     strictPort: true,
     port: process.env.PORT || 3000,
-    headers: {
-      'Content-Type': 'application/javascript'
-    }
   },
   build: {
     outDir: "dist",
@@ -18,14 +15,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'vendor': ['react', 'react-dom', 'react-router-dom']
-        }
-      }
+          vendor: ["react", "react-dom", "react-router-dom"],
+        },
+      },
     },
     target: "esnext",
-    manifest: true
+    manifest: true,
   },
   optimizeDeps: {
-    include: ['react', 'react-dom', 'react-router-dom']
-  }
+    include: ["react", "react-dom", "react-router-dom"],
+  },
 });

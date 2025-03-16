@@ -3,10 +3,14 @@ import react from "@vitejs/plugin-react-swc";
 
 export default defineConfig({
   plugins: [react()],
+  base: '/', // Ensure root-relative paths
   server: {
     host: true,
     strictPort: true,
     port: process.env.PORT || 3000,
+    headers: {
+      'Content-Type': 'application/javascript'
+    }
   },
   build: {
     outDir: "dist",
@@ -14,27 +18,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          "react-vendor": ["react", "react-dom", "react-router-dom"],
-          chart: ["chart.js"],
-        },
-        format: "es",
-        // Ensure proper file extensions for modules
-        entryFileNames: "assets/[name].[hash].js",
-        chunkFileNames: "assets/[name].[hash].js",
-        assetFileNames: "assets/[name].[hash].[ext]",
-      },
+          'vendor': ['react', 'react-dom', 'react-router-dom']
+        }
+      }
     },
     target: "esnext",
-    modulePreload: {
-      polyfill: true,
-    },
+    manifest: true
   },
-  // Add proper MIME type handling
   optimizeDeps: {
-    esbuildOptions: {
-      loader: {
-        ".js": "jsx",
-      },
-    },
-  },
+    include: ['react', 'react-dom', 'react-router-dom']
+  }
 });

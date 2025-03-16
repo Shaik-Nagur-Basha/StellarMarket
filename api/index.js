@@ -10,7 +10,7 @@ app.use(express.static(path.join(__dirname, "/client/dist")));
 app.use(
   express.static("public", {
     setHeaders: (res, path) => {
-      if (path.endsWith(".js")) {
+      if (path.endsWith(".jsx")) {
         res.setHeader("Content-Type", "application/javascript");
       }
     },

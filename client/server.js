@@ -9,7 +9,7 @@ const app = express();
 
 // Set proper MIME types
 app.use((req, res, next) => {
-  if (req.url.endsWith('.js')) {
+  if (req.url.endsWith('.jsx')) {
     res.type('application/javascript');
   } else if (req.url.endsWith('.mjs')) {
     res.type('application/javascript');

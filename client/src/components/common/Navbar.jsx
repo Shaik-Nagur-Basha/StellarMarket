@@ -48,17 +48,9 @@ export default function Navbar() {
       },
     },
     logout: () => console.log("Logout clicked"),
-    location: {
-      pathname: "/current-page",
-      search: "",
-      hash: "",
-      state: null,
-      key: "default",
-    },
   };
 
   const { user, logout } = mockData;
-  const location = mockData.location;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -77,11 +69,6 @@ export default function Navbar() {
     setOpenDropdown(null);
   };
 
-  useEffect(() => {
-    closeDropdowns();
-    setIsOpen(false);
-  }, [location]);
-
   const userAvatar = user?.avatar || faker.image.avatar();
 
   return (
@@ -92,7 +79,13 @@ export default function Navbar() {
           : "bg-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div
+        className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+        onMouseLeave={() => {
+          openDropdown && closeDropdowns();
+          isOpen && setIsOpen(false);
+        }}
+      >
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex-shrink-0">
@@ -224,7 +217,9 @@ export default function Navbar() {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex justify-center items-center gap-5 max-sm:gap-2">
+            <LanguageSwitcher />
+            <DarkModeToggle />
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 dark:text-gray-200 hover:text-primary-500 dark:hover:text-primary-400 focus:outline-none"
@@ -308,13 +303,6 @@ export default function Navbar() {
 
           {/* Mobile Profile Section */}
           <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
-            <div className="flex items-center px-3 py-2">
-              <LanguageSwitcher />
-              <div className="ml-2">
-                <DarkModeToggle />
-              </div>
-            </div>
-
             {user ? (
               <div className="space-y-1">
                 <div className="flex items-center px-3 py-2">

@@ -6,12 +6,9 @@
   "homepage": "https://shaik-nagur-basha.github.io/StellarMarket",
   "scripts": {
     "dev": "vite",
+    "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview",
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "preview": "vite preview"
   },
   "dependencies": {
     "@faker-js/faker": "^9.6.0",

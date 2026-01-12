@@ -1,0 +1,51 @@
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: "18"
+          cache: "npm"
+          cache-dependency-path: "client/package-lock.json"
+
+      - name: Install dependencies
+        run: npm ci
+        working-directory: ./client
+
+      - name: Build
+        run: npm run build
+        working-directory: ./client
+
+      - name: Create .nojekyll file
+        run: touch ./client/dist/.nojekyll
+
+      - name: Copy 404.html for SPA routing
+        run: |
+          if [ -f ./client/public/404.html ]; then
+            cp ./client/public/404.html ./client/dist/404.html
+          fi
+        shell: bash
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./client/dist
+          force_orphan: true
